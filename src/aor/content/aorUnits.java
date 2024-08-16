@@ -226,7 +226,7 @@ public class aorUnits {
                     y = 6;
                     cooldownTime = 30;
                     top = true;
-                    shootSound = Sounds.largeCannon;
+                    shootSound = Sounds.shootSnap;
                     shootY = 11;
                     bullet = new BasicBulletType(20, 10) {{
                         pierce = true;
@@ -391,7 +391,7 @@ public class aorUnits {
                         y = 0;
                         cooldownTime = 30;
                         top = true;
-                        shootSound = Sounds.largeCannon;
+                        shootSound = Sounds.shootSnap;
                         shootY = 2;
                         bullet = new BasicBulletType(600,20){{
                             pierce = true;
@@ -474,7 +474,7 @@ public class aorUnits {
                             y = 0;
                             cooldownTime = 30;
                             top = true;
-                            shootSound = Sounds.largeCannon;
+                            shootSound = Sounds.shootSnap;
                             shootY = 2;
                             bullet = new BasicBulletType(600, 20) {{
                                 pierce = true;
@@ -729,7 +729,7 @@ public class aorUnits {
         mig24 = new HelicopterUnitType("mig-24"){{
             float unitRange = 28 * tilesize;
             health = 450;
-            hitSize = 18;
+            hitSize = 90;
 
             speed = 2.5f;
             accel = 0.04f;

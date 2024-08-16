@@ -20,8 +20,8 @@ public class aorFx {
         lightOpacity = 0.6f;
         layer = 100;
         lifetime = 2000f;
-        sizeFrom = 0;
-        sizeTo = 10;
+        sizeFrom = 6;
+        sizeTo = 20;
         offsetX = 0;
         offsetY = 0;
     }},
@@ -38,8 +38,8 @@ public class aorFx {
         lightOpacity = 0.6f;
         layer = 100;
         lifetime = 2000f;
-        sizeFrom = 0;
-        sizeTo = 10;
+        sizeFrom = 6;
+        sizeTo = 20;
     }},
     arcFurnaceSmoke = new MultiEffect(
             new ParticleEffect(){{

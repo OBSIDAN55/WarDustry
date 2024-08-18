@@ -2,12 +2,12 @@ package aor.type;
 
 import mindustry.world.blocks.distribution.StackRouter;
 
-public class LiquidStackRouter extends StackRouter {
-    public LiquidStackRouter(String name) {
+public class WeighLiquidStackRouter extends StackRouter {
+    public WeighLiquidStackRouter(String name) {
         super(name);
         hasLiquids = true;
     }
-    public class LiquidStackRouterBuild extends StackRouterBuild{
+    public class WeighLiquidStackRouterBuild extends StackRouterBuild{
         @Override
         public void updateTile(){
             if(liquids.currentAmount() > 0.01f){

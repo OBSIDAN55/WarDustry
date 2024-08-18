@@ -16,7 +16,6 @@ import mindustry.entities.bullet.BombBulletType;
 import mindustry.entities.bullet.BulletType;
 import mindustry.entities.bullet.RailBulletType;
 import mindustry.entities.effect.ExplosionEffect;
-import mindustry.entities.effect.MultiEffect;
 import mindustry.entities.effect.ParticleEffect;
 import mindustry.entities.part.RegionPart;
 import mindustry.gen.Sounds;
@@ -24,11 +23,9 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
 import mindustry.world.Block;
-import mindustry.world.blocks.defense.DirectionalForceProjector;
 import mindustry.world.blocks.defense.ShockMine;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.defense.turrets.LiquidTurret;
-import mindustry.world.blocks.distribution.StackConveyor;
 import mindustry.world.blocks.distribution.StackRouter;
 import mindustry.world.blocks.environment.OreBlock;
 import mindustry.world.blocks.heat.HeatConductor;
@@ -64,7 +61,7 @@ public class aorBlocks {
     //cores
     coreCreation, coreDestruction,
     //environment
-    boxiteOre, gematiteOre, leadOre, malachiteOre, sphaleriteOre, titaniumOre, wolframiteOre, uraniumOre, barrierProjector;
+    boxiteOre, gematiteOre, leadOre, malachiteOre, sphaleriteOre, titaniumOre, wolframiteOre, uraniumOre;
 
     public static void load(){
         furnace = new MultiCrafter("furnace"){{
@@ -585,40 +582,40 @@ public class aorBlocks {
             craftEffect = aorFx.smoke;
         }};
         //distribution
-        oilConveyor = new LiquidStackConveyor("oil-conveyor"){{
+        oilConveyor = new WeighLiquidStackConveyor("oil-conveyor"){{
             requirements(Category.distribution, with(aorItems.ironPlate, 5));
-            speed = 0.04f;
+            speed = 1;
             itemCapacity = 30;
             liquidCapacity = 50;
-            consumeLiquid(mindustry.content.Liquids.oil, 0.005f);
+            consumeLiquid(mindustry.content.Liquids.oil, 3/60f);
         }};
-        oilRouter = new LiquidStackRouter("oil-router"){{
-            requirements(Category.distribution, with(aorItems.gematiteItem,1));
+        oilRouter = new WeighLiquidStackRouter("oil-router"){{
+            requirements(Category.distribution, with(aorItems.ironPlate, 10));
             health = 130;
             liquidCapacity = 50;
-            consumeLiquid(mindustry.content.Liquids.oil, 0.005f);
+            consumeLiquid(mindustry.content.Liquids.oil, 3/60f);
             speed = 6f;
             underBullets = true;
             solid = false;
         }};
-        gasolineConveyor = new LiquidStackConveyor("gasoline-conveyor"){{
-            requirements(Category.distribution, with(aorItems.gematiteItem,1));
+        gasolineConveyor = new WeighLiquidStackConveyor("gasoline-conveyor"){{
+            requirements(Category.distribution, with(aorItems.ironPlate, 5, aorItems.steelPlate, 5 ));
             speed = 0.2f;
             itemCapacity = 50;
             liquidCapacity = 60;
-            consumeLiquid(aorLiquids.gasoline, 0.006f);
+            consumeLiquid(aorLiquids.gasoline, 3.5f/60f);
         }};
-        gasolineRouter = new LiquidStackRouter("gasoline-router"){{
-            requirements(Category.distribution, with(aorItems.gematiteItem,1));
+        gasolineRouter = new WeighLiquidStackRouter("gasoline-router"){{
+            requirements(Category.distribution, with(aorItems.ironPlate, 10, aorItems.steelPlate, 10));
             health = 130;
             liquidCapacity = 50;
-            consumeLiquid(aorLiquids.gasoline, 0.005f);
+            consumeLiquid(aorLiquids.gasoline, 3.5f/60f);
             speed = 6f;
             underBullets = true;
             solid = false;
         }};
-        energyConveyor = new StackConveyor("energy-conveyor"){{
-            requirements(Category.distribution, with(aorItems.gematiteItem,1));
+        energyConveyor = new WeighStackConveyor("energy-conveyor"){{
+            requirements(Category.distribution, with(aorItems.steelPlate, 5, aorItems.electricMotor,5));
             speed = 0.3f;
             itemCapacity = 50;
             outputRouter = false;
@@ -627,10 +624,10 @@ public class aorBlocks {
             conductivePower = true;
             underBullets = true;
             baseEfficiency = 0;
-            consumePower(1);
+            consumePower(3/60f);
         }};
         energyRouter = new StackRouter("energy-router"){{
-            requirements(Category.distribution, with(aorItems.gematiteItem,1));
+            requirements(Category.distribution, with(aorItems.steelPlate, 10, aorItems.electricMotor,10));
             health = 130;
             speed = 6f;
             hasPower = true;
@@ -642,7 +639,7 @@ public class aorBlocks {
             consumePower(1);
         }};
         heatPipe = new HeatConductor("heat-pipe"){{
-            requirements(Category.power, with(aorItems.gematiteItem,1));
+            requirements(Category.power, with(aorItems.copperPlate,25));
             researchCostMultiplier = 10f;
             group = BlockGroup.heat;
             size = 1;
@@ -650,7 +647,7 @@ public class aorBlocks {
             regionRotated1 = 1;
         }};
         heatRouter = new HeatConductor("heat-router"){{
-            requirements(Category.power, with(aorItems.gematiteItem,1));
+            requirements(Category.power, with(aorItems.copperPlate,30));
             researchCostMultiplier = 10f;
             group = BlockGroup.heat;
             size = 1;
@@ -685,35 +682,24 @@ public class aorBlocks {
             displayEfficiency = true;
         }};
         liquidPipe = new ArmoredConduit("liquid-pipe"){{
-            requirements(Category.liquid, with(Items.thorium, 2, Items.metaglass, 1, Items.plastanium, 1));
+            requirements(Category.liquid, with(aorItems.ironPlate, 5, aorItems.leadPlate, 5));
             liquidCapacity = 16f;
             liquidPressure = 1.025f;
             health = 220;
         }};
         liquidTank = new LiquidRouter("liquid-tank"){{
-            requirements(Category.liquid, with(Items.titanium, 30, Items.metaglass, 40));
+            requirements(Category.liquid, with(aorItems.ironPlate, 500, aorItems.steelPlate,100));
             size = 3;
             solid = true;
             liquidCapacity = 2000f;
             health = 500;
         }};
         aboveGroundPipe = new LiquidBridge("above-ground-pipe"){{
-            requirements(Category.liquid, with(Items.graphite, 4, Items.metaglass, 8));
+            requirements(Category.liquid, with(aorItems.ironPlate, 10, aorItems.leadPlate, 5));
             fadeIn = moveArrows = false;
             arrowSpacing = 6f;
             range = 6;
             hasPower = false;
-        }};
-        barrierProjector = new DirectionalForceProjector("barrier-projector"){{
-            requirements(Category.effect, with(Items.surgeAlloy, 100, Items.silicon, 125));
-            size = 3;
-            width = 50f;
-            length = 36;
-            shieldHealth = 2000f;
-            cooldownNormal = 3f;
-            cooldownBrokenBase = 0.35f;
-
-            consumePower(4f);
         }};
         //drills
         pneumaticDrill = new Drill("pneumatic-drill"){{
@@ -726,7 +712,7 @@ public class aorBlocks {
             consumeLiquid(mindustry.content.Liquids.water, 0.06f).boost();
         }};
         keroseneDrill = new Drill("kerosene-drill"){{
-            requirements(Category.production, with(aorItems.gematiteItem,1));
+            requirements(Category.production, with(aorItems.ironIngot, 25,aorItems.copperPlate, 15, aorItems.aluminiumIngot, 10, aorItems.leadPlate, 15));
             drillTime = 280;
             size = 3;
             tier = 2;
@@ -736,7 +722,7 @@ public class aorBlocks {
             consumeLiquid(mindustry.content.Liquids.water, 3f / 60f).boost();
         }};
         gasolineDrill = new Drill("gasoline-drill"){{
-            requirements(Category.production, with(aorItems.gematiteItem,1));
+            requirements(Category.production, with(aorItems.ironIngot, 50,aorItems.copperPlate, 30, aorItems.aluminiumIngot, 30, aorItems.leadPlate, 20, aorItems.steelPlate, 60, aorItems.ironRod, 30));
             drillTime = 280;
             size = 4;
             tier = 3;
@@ -746,7 +732,7 @@ public class aorBlocks {
             consumeLiquid(mindustry.content.Liquids.water, 3f / 60f).boost();
         }};
         dieselDrill = new Drill("diesel-drill"){{
-            requirements(Category.production, with(aorItems.gematiteItem,1));
+            requirements(Category.production, with(aorItems.ironIngot, 150,aorItems.copperPlate, 100, aorItems.aluminiumIngot, 100, aorItems.leadPlate, 65, aorItems.steelPlate, 120, aorItems.titaniumPlate, 60, aorItems.ironRod, 50));
             drillTime = 280;
             size = 5;
             tier = 4;
@@ -756,7 +742,7 @@ public class aorBlocks {
             consumeLiquid(mindustry.content.Liquids.water, 3f / 60f).boost();
         }};
         drillingRig = new WallCrafter("cliff-crusher"){{
-            requirements(Category.production, with(aorItems.gematiteItem,1));
+            requirements(Category.production, with(aorItems.ironIngot, 200,aorItems.copperPlate, 30, aorItems.aluminiumIngot, 30, aorItems.leadPlate, 20));
             consumePower(11 / 60f);
             drillTime = 50f;
             size = 3;
@@ -769,7 +755,7 @@ public class aorBlocks {
         }};
         //effect
         antiTankMine = new ShockMine("anti-tank-mine"){{
-            requirements(Category.production, with(aorItems.gematiteItem,1));
+            requirements(Category.production, with(aorItems.ironPlate,10, aorItems.petcoke, 20));
             hasShadow = false;
             size = 2;
             health = 260;
@@ -1165,16 +1151,20 @@ public class aorBlocks {
              itemCapacity = 4500;
              size = 3;
              unitCapModifier = 15;
+
         }};
         coreCreation = new CoreBlock("coreCreation"){{
             requirements(Category.production, with(Items.copper, 1));
-            unitType = aorUnits.bt7;
+            unitType = aorUnits.mig24;
+            rotate = true;
             health = 3500;
             itemCapacity = 10000;
             size = 4;
             thrusterLength = 8.5f;
             unitCapModifier = 30;
             researchCostMultiplier = 0.07f;
+            placeablePlayer = true;
+            offset = 10;
         }};
     }
 }

@@ -4,9 +4,11 @@ import arc.graphics.Color;
 import arc.struct.Seq;
 import mindustry.type.Item;
 
+
 public class aorItems {
     public static final Seq<Item> huiItems = new Seq<>();
     public static Item
+
     //items
     gematiteItem,malachiteItem,aluminiumItem,leadItem,steelItem,sphaleriteItem,titaniumItem,wolframiteItem,petcoke,bitumen, uranium,
     //ingots
@@ -213,7 +215,7 @@ public class aorItems {
         electricMotor = new Item("electric-motor"){{
             cost = 4f;
             explosiveness = 0f;
-            hardness = 3;
+            hardness = 2;
             radioactivity = 0f;
             //hui
         }};
@@ -221,28 +223,28 @@ public class aorItems {
         uranium = new Item("uranium"){{
             cost = 5f;
             explosiveness = 0.2f;
-            hardness = 4;
+            hardness = 5;
             radioactivity = 1.7f;
             charge = 0.3f;
         }};
         uranium235 = new Item("uranium-235"){{
             cost = 5f;
             explosiveness = 0.4f;
-            hardness = 4;
+            hardness = 5;
             radioactivity = 2.6f;
             charge = 0.7f;
         }};
         uranium238 = new Item("uranium-238"){{
             cost = 5f;
             explosiveness = 0.2f;
-            hardness = 4;
+            hardness = 5;
             radioactivity = 0.4f;
             charge = 0.25f;
         }};
         nuclearFuel = new Item("nuclear-fuel", Color.valueOf("54D67D")){{
             cost = 5f;
             explosiveness = 0.4f;
-            hardness = 4;
+            hardness = 5;
             radioactivity = 2.25f;
             charge = 0.45f;
         }};

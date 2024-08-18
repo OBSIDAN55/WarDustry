@@ -66,7 +66,7 @@ public class aorBlocks {
     public static void load(){
         furnace = new MultiCrafter("furnace"){{
             requirements(Category.crafting, with(aorItems.gematiteItem, 50, aorItems.leadItem, 35));
-            itemCapacity = 10;
+            itemCapacity = 60;
             size = 3;
             resolvedRecipes = Seq.with(
                     new Recipe() {{
@@ -172,7 +172,7 @@ public class aorBlocks {
         }};
         press = new MultiCrafter("press"){{
             requirements(Category.crafting, with(aorItems.ironIngot, 40, aorItems.leadIngot,30, aorItems.copperIngot,15));
-            itemCapacity = 10;
+            itemCapacity = 50;
             size = 3;
             resolvedRecipes = Seq.with(
                     new Recipe() {{
@@ -278,7 +278,7 @@ public class aorBlocks {
         }};
         moldingMachine = new MultiCrafter("molding-machine"){{
             requirements(Category.crafting, with(aorItems.ironIngot, 100, aorItems.ironPlate, 30, aorItems.copperIngot, 120, aorItems.copperPlate, 20, aorItems.leadIngot, 40, aorItems.leadPlate, 35));
-            itemCapacity = 10;
+            itemCapacity = 50;
             size = 3;
             resolvedRecipes =Seq.with(
                     new Recipe(){{
@@ -388,7 +388,7 @@ public class aorBlocks {
             craftEffect = Fx.pulverizeMedium;
         }};
         gasCentrifuge = new Separator("gas-centrifuge"){{
-            requirements(Category.crafting, with(Items.copper, 30, Items.titanium, 25));
+            requirements(Category.crafting, with(aorItems.bitumen, 125, aorItems.steelPlate, 100, aorItems.copperWire, 55, aorItems.wolframiteRod, 35, aorItems.ironRod, 65, aorItems.electricMotor, 20, aorItems.titaniumPlate, 80));
             results = with(
                 aorItems.uranium235,1,
                     aorItems.uranium238, 35
@@ -404,7 +404,7 @@ public class aorBlocks {
             );
 
             consumePower(11f);
-            consumeItem(aorItems.uranium,5);
+            consumeItem(aorItems.uranium,1);
 
         }};
 
@@ -546,7 +546,7 @@ public class aorBlocks {
             );
         }};
         arcFurnace = new GenericCrafter("arc-furnace"){{
-            requirements(Category.crafting, with(Items.copper, 1));
+            requirements(Category.crafting, with(aorItems.gematiteItem,1));
                 size = 4;
                 hasItems = true;
                 hasPower = true;
@@ -901,7 +901,7 @@ public class aorBlocks {
              hasLiquids = true;
              liquidCapacity = 40;
              consumeItem(Items.coal, 3);
-            // consumeLiquid(Liquids.water, 2);
+             consumeLiquid(Liquids.water, 120/60f);
              outputLiquid = new LiquidStack(aorLiquids.steam, 1.5f);
              craftTime = 120;
              updateEffect = Fx.none;

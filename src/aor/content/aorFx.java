@@ -26,7 +26,7 @@ public class aorFx {
         offsetY = 0;
     }},
     steam = new ParticleEffect(){{
-        colorFrom = Color.white;
+        colorFrom = Color.rgb(100, 100, 100);
         colorTo = Color.valueOf("00000000");
         particles = 2;
         randLength = true;
@@ -34,9 +34,8 @@ public class aorFx {
         cone = 15f;
         length = 500f;
         baseLength = 0f;
-        lightScl = 2f;
-        lightOpacity = 0.6f;
-        layer = 100;
+        lightScl = 0f;
+        lightOpacity = 0f;
         lifetime = 2000f;
         sizeFrom = 6;
         sizeTo = 20;

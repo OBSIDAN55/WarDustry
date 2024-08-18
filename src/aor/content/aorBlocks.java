@@ -586,14 +586,14 @@ public class aorBlocks {
             requirements(Category.distribution, with(aorItems.ironPlate, 5));
             speed = 1;
             itemCapacity = 30;
-            liquidCapacity = 50;
-            consumeLiquid(mindustry.content.Liquids.oil, 3/60f);
+            liquidCapacity = 20;
+            consumeLiquid(mindustry.content.Liquids.oil, 0.2f/60f);
         }};
         oilRouter = new WeighLiquidStackRouter("oil-router"){{
             requirements(Category.distribution, with(aorItems.ironPlate, 10));
             health = 130;
-            liquidCapacity = 50;
-            consumeLiquid(mindustry.content.Liquids.oil, 3/60f);
+            liquidCapacity = 20;
+            consumeLiquid(mindustry.content.Liquids.oil, 0.2f/60f);
             speed = 6f;
             underBullets = true;
             solid = false;
@@ -601,15 +601,15 @@ public class aorBlocks {
         gasolineConveyor = new WeighLiquidStackConveyor("gasoline-conveyor"){{
             requirements(Category.distribution, with(aorItems.ironPlate, 5, aorItems.steelPlate, 5 ));
             speed = 0.2f;
-            itemCapacity = 50;
+            itemCapacity = 20;
             liquidCapacity = 60;
-            consumeLiquid(aorLiquids.gasoline, 3.5f/60f);
+            consumeLiquid(aorLiquids.gasoline, 1.5f/60f);
         }};
         gasolineRouter = new WeighLiquidStackRouter("gasoline-router"){{
             requirements(Category.distribution, with(aorItems.ironPlate, 10, aorItems.steelPlate, 10));
             health = 130;
-            liquidCapacity = 50;
-            consumeLiquid(aorLiquids.gasoline, 3.5f/60f);
+            liquidCapacity = 20;
+            consumeLiquid(aorLiquids.gasoline, 1.5f/60f);
             speed = 6f;
             underBullets = true;
             solid = false;
@@ -900,6 +900,7 @@ public class aorBlocks {
              size = 3;
              hasLiquids = true;
              liquidCapacity = 40;
+             itemCapacity = 60;
              consumeItem(Items.coal, 3);
              consumeLiquid(Liquids.water, 120/60f);
              outputLiquid = new LiquidStack(aorLiquids.steam, 1.5f);

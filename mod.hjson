@@ -1,7 +1,7 @@
 displayName: "Wardustry"
 name: "aor"
 author: "[][#96F58C]obs[#4C7A5A]idi[#263A33]an and [gold]|[][gold]Fox1va[][gold]|"
-description: """ description """
+description: " description "
 version: 0.2
 main: aor.aorMod
 subtitle: "still in development, do not use"

@@ -11,3 +11,4 @@ minGameVersion: 147
 repo: OBSIDAN55/WarDustry
 java: true
 hidden: false
+hideBrowser: false

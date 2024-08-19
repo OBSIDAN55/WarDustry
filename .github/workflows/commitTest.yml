@@ -34,6 +34,6 @@ jobs:
     - name: Create release
       uses: svenstaro/upload-release-action@v2
       with:
-        tag ${{ github.ref }}
-      repo_token: ${{ secrets.GITHUB_TOKEN }}
-      file: build/libs/${{ github.event.repository.name }}.jar
+        tag: ${{ github.ref }}
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: build/libs/${{ github.event.repository.name }}.jar

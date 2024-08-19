@@ -9,4 +9,5 @@ main: aor.aorMod
 subtitle: "still in development, do not use"
 minGameVersion: 147
 repo: OBSIDAN55/WarDustry
+hidden: true
 java: true

@@ -51,7 +51,8 @@ public class aorBlocks {
     //turrets
     flamethrower, miniGun, railGun, rocketLauncher,
     //power
-    nuclearReactor, steamGenerator, boiler, heatExchanger,
+    boiler,steamGenerator, nuclearReactor, heatExchanger, steamTurbine, solarPanel,fuelGenerator,
+    ElectricTransmissionLine, substation, accumulator,
     //effect
     antiTankMine,
     //drills
@@ -61,7 +62,7 @@ public class aorBlocks {
     //cores
     coreCreation, coreDestruction,
     //environment
-    boxiteOre, gematiteOre, leadOre, malachiteOre, sphaleriteOre, titaniumOre, wolframiteOre, uraniumOre;
+    boxiteOre, gematiteOre, leadOre, malachiteOre, sphaleriteOre, titaniumOre, wolframiteOre, uraniumOre, rockyGround;
 
     public static void load(){
         furnace = new MultiCrafter("furnace"){{
@@ -741,7 +742,7 @@ public class aorBlocks {
             consumeLiquid(aorLiquids.diesel, 0.5f / 60f);
             consumeLiquid(mindustry.content.Liquids.water, 3f / 60f).boost();
         }};
-        drillingRig = new WallCrafter("cliff-crusher"){{
+        drillingRig = new WallCrafter("drilling-rig"){{
             requirements(Category.production, with(aorItems.ironIngot, 200,aorItems.copperPlate, 30, aorItems.aluminiumIngot, 30, aorItems.leadPlate, 20));
             consumePower(11 / 60f);
             drillTime = 50f;

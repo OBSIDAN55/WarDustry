@@ -910,6 +910,7 @@ public class aorBlocks {
          }};
          heatExchanger = new DamageHeatCrafter("heat-exchanger"){{
              requirements(Category.power, with(aorItems.gematiteItem,1));
+             health = 1340;
              size = 3;
              rotate = true;
              invertFlip = true;

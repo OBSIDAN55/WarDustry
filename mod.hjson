@@ -8,3 +8,5 @@ subtitle: "still in development, do not use"
 minGameVersion: 136
 repo: OBSIDAN55/WarDustry
 java: true
+hidden: false
+hideBrowser: false

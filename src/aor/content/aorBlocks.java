@@ -927,6 +927,31 @@ public class aorBlocks {
              consumeLiquid(Liquids.water, 2f);
              drawArrow = false;
          }};
+
+         steamTurbine = new HeatRedirectorGenerator("steam-turbine"){{
+             requirements(Category.power, with(Items.tungsten, 10, Items.graphite, 10));
+             researchCostMultiplier = 10f;
+             size = 3;
+             regionRotated1 = 1;
+             powerProduction = 800/60f;
+             consumeLiquid(aorLiquids.steam, 1f);
+             hasLiquids = true;
+             liquidCapacity = 150f;
+             size = 3;
+             ambientSound = Sounds.smelter;
+             ambientSoundVolume = 0.06f;
+             drawer = new DrawMulti(
+                     new DrawDefault(),
+                     new DrawHeatOutput(),
+                     new DrawHeatInput("-heat")
+                     //new DrawRegion("-rotator"){{
+                     //    spinSprite = true;
+                     //    rotateSpeed = -35;
+                     //}}
+             );
+             //effectChance = 0.4f;
+             //generateEffect = aorFx.steam;
+         }};
         //turrets
         flamethrower = new LiquidTurret("flamethrower"){{
             requirements(Category.turret, with(aorItems.gematiteItem,1));

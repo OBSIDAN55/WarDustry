@@ -586,27 +586,27 @@ public class aorBlocks {
             consumeLiquid(mindustry.content.Liquids.oil, 0.2f/60f);
         }};
         oilRouter = new WeighLiquidStackRouter("oil-router"){{
-            requirements(Category.distribution, with(aorItems.ironPlate, 10));
+            requirements(Category.distribution, with(aorItems.ironPlate, 50));
             health = 130;
             liquidCapacity = 20;
             consumeLiquid(mindustry.content.Liquids.oil, 0.2f/60f);
-            speed = 6f;
+            speed = 7f;
             underBullets = true;
             solid = false;
         }};
         gasolineConveyor = new WeighLiquidStackConveyor("gasoline-conveyor"){{
             requirements(Category.distribution, with(aorItems.ironPlate, 5, aorItems.steelPlate, 5 ));
             speed = 0.2f;
-            itemCapacity = 20;
+            itemCapacity = 50;
             liquidCapacity = 60;
             consumeLiquid(aorLiquids.gasoline, 1.5f/60f);
         }};
         gasolineRouter = new WeighLiquidStackRouter("gasoline-router"){{
-            requirements(Category.distribution, with(aorItems.ironPlate, 10, aorItems.steelPlate, 10));
+            requirements(Category.distribution, with(aorItems.ironPlate, 50, aorItems.steelPlate, 50));
             health = 130;
             liquidCapacity = 20;
             consumeLiquid(aorLiquids.gasoline, 1.5f/60f);
-            speed = 6f;
+            speed = 5f;
             underBullets = true;
             solid = false;
         }};
@@ -623,7 +623,7 @@ public class aorBlocks {
             consumePower(3/60f);
         }};
         energyRouter = new StackRouter("energy-router"){{
-            requirements(Category.distribution, with(aorItems.steelPlate, 10, aorItems.electricMotor,10));
+            requirements(Category.distribution, with(aorItems.steelPlate, 50, aorItems.electricMotor,50));
             health = 130;
             speed = 6f;
             hasPower = true;
@@ -702,7 +702,7 @@ public class aorBlocks {
             requirements(Category.production, with(aorItems.ironIngot, 20,aorItems.copperPlate, 10));
             drillTime = 280;
             size = 2;
-            tier = 4;
+            tier = 2;
             updateEffect = Fx.pulverizeMedium;
             drillEffect = Fx.mineBig;
             consumeLiquid(mindustry.content.Liquids.water, 0.06f).boost();
@@ -711,7 +711,7 @@ public class aorBlocks {
             requirements(Category.production, with(aorItems.ironIngot, 25,aorItems.copperPlate, 15, aorItems.aluminiumIngot, 10, aorItems.leadPlate, 15));
             drillTime = 280;
             size = 3;
-            tier = 2;
+            tier = 3;
             updateEffect = Fx.pulverizeMedium;
             drillEffect = Fx.mineBig;
             consumeLiquid(aorLiquids.kerosene, 0.5f / 60f);
@@ -721,7 +721,7 @@ public class aorBlocks {
             requirements(Category.production, with(aorItems.ironIngot, 50,aorItems.copperPlate, 30, aorItems.aluminiumIngot, 30, aorItems.leadPlate, 20, aorItems.steelPlate, 60, aorItems.ironRod, 30));
             drillTime = 280;
             size = 4;
-            tier = 3;
+            tier = 4;
             updateEffect = Fx.pulverizeMedium;
             drillEffect = Fx.mineBig;
             consumeLiquid(aorLiquids.gasoline, 0.5f / 60f);
@@ -731,7 +731,7 @@ public class aorBlocks {
             requirements(Category.production, with(aorItems.ironIngot, 150,aorItems.copperPlate, 100, aorItems.aluminiumIngot, 100, aorItems.leadPlate, 65, aorItems.steelPlate, 120, aorItems.titaniumPlate, 60, aorItems.ironRod, 50));
             drillTime = 280;
             size = 5;
-            tier = 4;
+            tier = 5;
             updateEffect = Fx.pulverizeMedium;
             drillEffect = Fx.mineBig;
             consumeLiquid(aorLiquids.diesel, 0.5f / 60f);
@@ -843,6 +843,7 @@ public class aorBlocks {
             requirements(Category.power, with(aorItems.bitumen, 1250, aorItems.steelPlate, 1000, aorItems.copperWire, 565, aorItems.wolframiteRod, 345, aorItems.ironRod, 475, aorItems.electricMotor, 50, aorItems.titaniumPlate, 650));
             size = 8;
             itemCapacity = 10;
+            liquidCapacity = 200f;
             consumeItem(aorItems.nuclearFuel, 1);
             hasLiquids = true;
             consumeLiquid(Liquids.water,4.2f);
@@ -874,7 +875,7 @@ public class aorBlocks {
                     }});
         }};
         steamGenerator = new StackSteamGenerator("steam-generator"){{
-            requirements(Category.power, with(aorItems.gematiteItem,1));
+            requirements(Category.power, with(aorItems.bitumen, 75, aorItems.ironPlate, 150, aorItems.aluminiumPlate, 75, aorItems.ironRod, 60));
             powerProduction = 800/60f;
             consumeLiquid(aorLiquids.steam, 1f);
             hasLiquids = true;
@@ -892,10 +893,10 @@ public class aorBlocks {
             generateEffect = aorFx.steam;
         }};
          boiler = new GenericCrafter("boiler"){{
-             requirements(Category.power, with(aorItems.gematiteItem, 1));
+             requirements(Category.power, with(aorItems.gematiteItem, 100, aorItems.copperPlate, 50, aorItems.leadIngot, 100));
              size = 3;
              hasLiquids = true;
-             liquidCapacity = 40;
+             liquidCapacity = 80;
              itemCapacity = 60;
              consumeItem(Items.coal, 3);
              consumeLiquid(Liquids.water, 120/60f);
@@ -911,7 +912,7 @@ public class aorBlocks {
              invertFlip = true;
              heatRequirement = 30f;
              craftTime = 120f;
-             liquidCapacity = 40;
+             liquidCapacity = 80;
              maxEfficiency = 1f;
              dmg = 400f;
              drawer = new DrawMulti(new DrawGlowRegion("-glow"), new DrawDefault(), new DrawHeatInput(),new DrawLiquidOutputs());

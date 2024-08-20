@@ -5,6 +5,7 @@ import aor.entities.entity.CopterUnitEntity;
 import aor.type.Rotor;
 import arc.func.Prov;
 import arc.graphics.Color;
+import arc.math.geom.Rect;
 import arc.struct.ObjectIntMap;
 import mindustry.content.Fx;
 import mindustry.content.Items;
@@ -12,6 +13,7 @@ import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.bullet.RailBulletType;
 import mindustry.entities.part.RegionPart;
+import mindustry.entities.pattern.ShootBarrel;
 import mindustry.entities.pattern.ShootPattern;
 import mindustry.gen.Entityc;
 import mindustry.gen.Sounds;
@@ -726,6 +728,63 @@ public class aorUnits {
             );
         }};
         //chinese unit tree
+
+        //core units
+
+        ruined = new TankUnitType("ruined"){{
+            this.constructor = TankUnit::create;
+            hitSize = 46f;
+            treadPullOffset = 1;
+            speed = 2.4f;
+            health = 22000;
+            armor = 26f;
+            rotateSpeed = 1.7f;
+            buildSpeed = 0.5f;
+            mineTier = 2;
+            mineSpeed = 7f;
+            mineRange = 27f;
+            rotateToBuilding = true;
+            omniMovement = false;
+
+            float xo = 231f/2f, yo = 231f/2f;
+            treadRects = new Rect[]{new Rect(27 - xo, 152 - yo, 67, 73), new Rect(24 - xo, 51 - 9 - yo, 29, 17), new Rect(59 - xo, 18 - 9 - yo, 39, 19)};
+             weapons.add(new Weapon(name+"-weapon"){{
+                 outlineColor = Color.valueOf("000000ff");
+                 reload = 3;
+                 rotate = true;
+                 recoil = 0.3f;
+                 rotateSpeed = 1.9f;
+                 mirror = true;
+                 x = -10;
+                 y = -3;
+                 top = true;
+                 shootSound = Sounds.shootSnap;
+                 shootY = 8;
+
+                 shoot = new ShootBarrel(){{
+                     barrels = new float[]{
+                             0f, 1f, 0f,
+                             3f, 0f, 0f,
+                             -3f, 0f, 0f,
+                     };
+                 }};
+                 bullet = new BasicBulletType(20,600){{
+                     pierce = true;
+                     pierceCap = 3;
+                     drag=  0.01f;
+                     smokeEffect = Fx.shootBigSmoke;
+                     shootEffect = Fx.shootBigColor;
+                     width = 5;
+                     height = 7;
+                     lifetime = 28;
+                     hitSize = 4;
+                     trailWidth = 1.7f;
+                     trailLength = 5;
+                     despawnEffect = Fx.hitBulletColor;
+                 }};
+             }});
+
+        }};
         mig24 = new HelicopterUnitType("mig-24"){{
             float unitRange = 28 * tilesize;
             health = 450;

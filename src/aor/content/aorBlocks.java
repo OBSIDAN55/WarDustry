@@ -943,11 +943,11 @@ public class aorBlocks {
              drawer = new DrawMulti(
                      new DrawDefault(),
                      new DrawHeatOutput(),
-                     new DrawHeatInput("-heat")
-                     //new DrawRegion("-rotator"){{
-                     //    spinSprite = true;
-                     //    rotateSpeed = -35;
-                     //}}
+                     new DrawHeatInput("-heat"),
+                     new DrawRegion("-rotator"){{
+                         spinSprite = true;
+                         rotateSpeed = -35;
+                     }}
              );
              //effectChance = 0.4f;
              //generateEffect = aorFx.steam;

@@ -143,7 +143,7 @@ public class aorBlocks {
                     new Recipe() {{
                         input = new IOEntry() {{
                             items = ItemStack.with(
-                                    aorItems.sphaleriteItem, 1,
+                                    aorItems.zincPlate, 1,
                                     Items.coal, 2
                             );
                         }};
@@ -179,27 +179,12 @@ public class aorBlocks {
                     new Recipe() {{
                         input = new IOEntry() {{
                             items = ItemStack.with(
-                                    aorItems.gematiteItem, 1,
-                                    Items.coal, 2
-                            );
-                        }};
-                        output = new IOEntry() {{
-                            items = ItemStack.with(
                                     aorItems.ironIngot, 1
                             );
                         }};
-                        craftTime = 60f;
-                    }},
-                    new Recipe() {{
-                        input = new IOEntry() {{
-                            items = ItemStack.with(
-                                    aorItems.malachiteItem, 1,
-                                    Items.coal, 2
-                            );
-                        }};
                         output = new IOEntry() {{
                             items = ItemStack.with(
-                                    aorItems.copperIngot, 1
+                                    aorItems.ironPlate, 2
                             );
                         }};
                         craftTime = 60f;
@@ -207,55 +192,52 @@ public class aorBlocks {
                     new Recipe() {{
                         input = new IOEntry() {{
                             items = ItemStack.with(
-                                    aorItems.leadItem, 1,
+                                    aorItems.copperIngot, 1,
                                     Items.coal, 2
                             );
                         }};
                         output = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.copperPlate, 2
+                            );
+                        }};
+                        craftTime = 60f;
+                    }},
+                    new Recipe() {{
+                        input = new IOEntry() {{
                             items = ItemStack.with(
                                     aorItems.leadIngot, 1
                             );
                         }};
+                        output = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.leadIngot, 2
+                            );
+                        }};
                         craftTime = 60f;
                     }},
                     new Recipe() {{
                         input = new IOEntry() {{
-                            items = ItemStack.with(
-                                    aorItems.titaniumItem, 1,
-                                    Items.coal, 2
-                            );
-                        }};
-                        output = new IOEntry() {{
                             items = ItemStack.with(
                                     aorItems.titaniumIngot, 1
                             );
                         }};
+                        output = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.titaniumPlate, 2
+                            );
+                        }};
                         craftTime = 60f;
                     }},
                     new Recipe() {{
                         input = new IOEntry() {{
-                            items = ItemStack.with(
-                                    aorItems.aluminiumItem, 1,
-                                    Items.coal, 2
-                            );
-                        }};
-                        output = new IOEntry() {{
                             items = ItemStack.with(
                                     aorItems.aluminiumIngot, 1
                             );
                         }};
-                        craftTime = 60f;
-                    }},
-                    new Recipe() {{
-                        input = new IOEntry() {{
-                            items = ItemStack.with(
-                                    aorItems.sphaleriteItem, 1,
-                                    Items.coal, 2
-                            );
-                        }};
                         output = new IOEntry() {{
                             items = ItemStack.with(
-                                    aorItems.zincIngot, 1
+                                    aorItems.aluminiumPlate, 2
                             );
                         }};
                         craftTime = 60f;
@@ -263,16 +245,29 @@ public class aorBlocks {
                     new Recipe() {{
                         input = new IOEntry() {{
                             items = ItemStack.with(
-                                    aorItems.wolframiteItem, 1,
+                                    aorItems.zincIngot, 1,
                                     Items.coal, 2
                             );
                         }};
                         output = new IOEntry() {{
                             items = ItemStack.with(
-                                    aorItems.wolframiteIngot, 1
+                                    aorItems.zincPlate, 2
                             );
-                            craftTime = 60f;
                         }};
+                        craftTime = 60f;
+                    }},
+                    new Recipe(){{
+                        input = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.steelItem, 1
+                            );
+                        }};
+                        output = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.steelPlate, 2
+                            );
+                        }};
+                        craftTime = 60f;
                     }}
             );
             craftEffect = Fx.pulverizeMedium;

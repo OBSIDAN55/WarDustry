@@ -370,7 +370,7 @@ public class aorBlocks {
                                     aorItems.electricMotor,1
                             );
                         }};
-                        craftTime = 60f;
+                        craftTime = 220f;
                     }},
                     new Recipe(){{
                         input = new IOEntry(){{
@@ -384,7 +384,7 @@ public class aorBlocks {
                                     aorItems.nuclearFuel,2
                             );
                         }};
-                        craftTime = 60f;
+                        craftTime = 260f;
                     }}
             );
             craftEffect = Fx.pulverizeMedium;
@@ -398,7 +398,7 @@ public class aorBlocks {
             );
             hasLiquids = false;
             hasPower = true;
-            craftTime = 135f;
+            craftTime = 120f;
             size = 4;
             drawer = new DrawMulti(
                     new DrawRegion("-bottom"),
@@ -420,8 +420,8 @@ public class aorBlocks {
             group = BlockGroup.liquids;
             liquidCapacity = 100;
             consumePower(1450/60f);
-            consumeLiquid(mindustry.content.Liquids.oil, 10);
-            outputLiquids = LiquidStack.with(aorLiquids.heavyOil, 5f, aorLiquids.tightOil, 5f);
+            consumeLiquid(mindustry.content.Liquids.oil, 30/60f);
+            outputLiquids = LiquidStack.with(aorLiquids.heavyOil, 20/60f, aorLiquids.tightOil, 10/60f);
             craftTime = 20;
             updateEffect =Fx.none;
             liquidOutputDirections = new int[]{1,3};
@@ -464,7 +464,7 @@ public class aorBlocks {
             size = 4;
             attribute = Attribute.get("tar");
             consumeLiquid(aorLiquids.steam, 18/60f);
-            outputLiquid = new LiquidStack(Liquids.oil, 24/60f);
+            outputLiquid = new LiquidStack(Liquids.oil, 30/60f);
             craftTime = 60;
             floating = true;
             baseEfficiency = 0;
@@ -499,8 +499,8 @@ public class aorBlocks {
             group = BlockGroup.liquids;
             liquidCapacity = 40;
             consumePower(20f);
-            consumeLiquid(mindustry.content.Liquids.oil, 10);
-            outputLiquids = LiquidStack.with(aorLiquids.kerosene, 5f, aorLiquids.gasoline, 6f, aorLiquids.diesel, 5f);
+            consumeLiquid(mindustry.content.Liquids.oil, 10/60f);
+            outputLiquids = LiquidStack.with(aorLiquids.kerosene, 10/3/60f, aorLiquids.gasoline, 10/60/3f, aorLiquids.diesel, 10/3/60f);
             craftTime = 30;
             updateEffect = aorFx.smoke;
             liquidOutputDirections = new int[]{1,2,3};
@@ -518,9 +518,9 @@ public class aorBlocks {
             hasPower = true;
             group = BlockGroup.liquids;
             liquidCapacity = 40;
-            consumePower(20f);
-            consumeLiquid(aorLiquids.tightOil, 10);
-            outputLiquid = new LiquidStack(aorLiquids.lubricant, 5);
+            consumePower(450/60f);
+            consumeLiquid(aorLiquids.tightOil, 5/60f);
+            outputLiquid = new LiquidStack(aorLiquids.lubricant, 6/60f);
             craftTime = 60;
             updateEffect = Fx.none;
             drawer = new DrawMulti(
@@ -536,9 +536,9 @@ public class aorBlocks {
             group = BlockGroup.liquids;
             liquidCapacity = 40;
             consumePower(20f);
-            consumeLiquid(aorLiquids.heavyOil, 10);
+            consumeLiquid(aorLiquids.heavyOil, 15/60f);
             outputItem = new ItemStack(aorItems.bitumen,5);
-            craftTime = 60;
+            craftTime = 250;
 
             updateEffect = aorFx.smoke;
             drawer = new DrawMulti(
@@ -555,8 +555,8 @@ public class aorBlocks {
             group = BlockGroup.liquids;
             liquidCapacity = 40;
             craftTime = 60;
-            consumeLiquid(aorLiquids.heavyOil, 10);
-            outputItem = new ItemStack(aorItems.petcoke,5);
+            consumeLiquid(aorLiquids.heavyOil, 30/60f);
+            outputItem = new ItemStack(aorItems.petcoke,6);
             updateEffect = Fx.none;
             craftEffect = aorFx.smoke;
         }};
@@ -566,7 +566,7 @@ public class aorBlocks {
             hasItems = true;
             consumeItems(with(aorItems.ironIngot, 2, aorItems.petcoke, 1));
             outputItem = new ItemStack(aorItems.steelItem, 1);
-            craftTime = 150;
+            craftTime = 30;
             updateEffect = Fx.none;
             craftEffect = aorFx.smoke;
         }};

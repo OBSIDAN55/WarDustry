@@ -7,10 +7,7 @@ import aor.type.*;
 import arc.graphics.Color;
 import arc.math.Mathf;
 import arc.struct.Seq;
-import mindustry.content.Fx;
-import mindustry.content.Items;
-import mindustry.content.Liquids;
-import mindustry.content.StatusEffects;
+import mindustry.content.*;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.bullet.BombBulletType;
 import mindustry.entities.bullet.BulletType;
@@ -22,11 +19,14 @@ import mindustry.gen.Sounds;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
+import mindustry.type.PayloadStack;
 import mindustry.world.Block;
 import mindustry.world.blocks.defense.ShockMine;
+import mindustry.world.blocks.defense.Wall;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.defense.turrets.LiquidTurret;
 import mindustry.world.blocks.distribution.StackRouter;
+import mindustry.world.blocks.environment.Floor;
 import mindustry.world.blocks.environment.OreBlock;
 import mindustry.world.blocks.heat.HeatConductor;
 import mindustry.world.blocks.liquid.ArmoredConduit;
@@ -34,6 +34,8 @@ import mindustry.world.blocks.liquid.LiquidBridge;
 import mindustry.world.blocks.liquid.LiquidRouter;
 import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.storage.CoreBlock;
+import mindustry.world.blocks.units.UnitAssembler;
+import mindustry.world.blocks.units.UnitFactory;
 import mindustry.world.draw.*;
 import mindustry.world.meta.Attribute;
 import mindustry.world.meta.BlockGroup;
@@ -62,7 +64,13 @@ public class aorBlocks {
     //cores
     coreCreation, coreDestruction,
     //environment
-    boxiteOre, gematiteOre, leadOre, malachiteOre, sphaleriteOre, titaniumOre, wolframiteOre, uraniumOre, rockyGround;
+    boxiteOre, gematiteOre, leadOre, malachiteOre, sphaleriteOre, titaniumOre, wolframiteOre, uraniumOre, rockyGround,
+    //walls
+    stoneWall, ironWall, ironBitumenWall, steelWall, titaniumWall, titaniumTungstenWall,
+    bigStoneWall, bigIronWall, bigIronBitumenWall, bigSteelWall, bigTitaniumWall, bigTitaniumTungstenWall,
+    //units
+    sovietTankFabricator, sovietTankAssembler,
+    engine, t90Turret, t14Turret;
 
     public static void load(){
         furnace = new MultiCrafter("furnace"){{
@@ -837,6 +845,9 @@ public class aorBlocks {
             wallOre = false;
             oreDefault = true;
         }};
+        rockyGround = new Floor("rocky-ground", 3){{
+           attributes.set(Attribute.get("rock"), 1);
+        }};
         //power
         nuclearReactor = new HeatNuclearReactor("nuclear-reactor"){{
             requirements(Category.power, with(aorItems.bitumen, 1250, aorItems.steelPlate, 1000, aorItems.copperWire, 565, aorItems.wolframiteRod, 345,
@@ -1192,6 +1203,111 @@ public class aorBlocks {
             researchCostMultiplier = 0.07f;
             placeablePlayer = true;
             offset = 10;
+        }};
+
+        //walls region
+        stoneWall = new Wall("stone-wall"){{
+            requirements(Category.defense, with(aorItems.rock, 6));
+            health = 220;
+            armor = 2;
+        }};
+        bigStoneWall = new Wall("big-stone-wall"){{
+            requirements(Category.defense, with(aorItems.rock, 6*4));
+            health = 220*4;
+            armor = 3;
+            size = 2;
+        }};
+        ironWall = new Wall("iron-wall"){{
+            requirements(Category.defense, with(aorItems.ironIngot, 6));
+           health = 250;
+           armor = 3;
+        }};
+        bigIronWall = new Wall("big-iron-wall"){{
+            requirements(Category.defense, with(aorItems.ironIngot, 6*4));
+            health = 250*4;
+            armor = 4;
+            size = 2;
+        }};
+        ironBitumenWall = new Wall("iron-bitumen-wall"){{
+            requirements(Category.defense, with(aorItems.ironIngot, 6, aorItems.bitumen, 5));
+            health = 320;
+            armor = 3;
+        }};
+        bigIronBitumenWall = new Wall("big-iron-bitumen-wall"){{
+            requirements(Category.defense, with(aorItems.ironIngot, 6*4, aorItems.bitumen, 5*4));
+            health = 320*4;
+            armor = 4;
+            size = 2;
+        }};
+        steelWall = new Wall("steel-wall"){{
+            requirements(Category.defense, with(aorItems.steelItem, 6));
+            health = 360;
+            armor = 5;
+        }};
+        bigSteelWall = new Wall("big-steel-wall"){{
+            requirements(Category.defense, with(aorItems.steelItem, 6*4));
+            health = 360*4;
+            armor = 6;
+            size = 2;
+        }};
+        titaniumWall = new Wall("titanium-wall"){{
+            requirements(Category.defense, with(aorItems.titaniumIngot, 6));
+            health = 430;
+            armor = 4;
+        }};
+        bigTitaniumWall = new Wall("big-titanium-wall"){{
+            requirements(Category.defense, with(aorItems.titaniumIngot, 6*4));
+            health = 430*4;
+            armor = 5;
+            size = 2;
+        }};
+        titaniumTungstenWall = new Wall("titanium-tungsten-wall"){{
+            requirements(Category.defense, with(aorItems.titaniumIngot, 6, aorItems.wolframiteIngot, 5));
+            health = 500;
+            armor = 6;
+        }};
+        bigTitaniumTungstenWall = new Wall("big-titanium-tungsten-wall"){{
+            requirements(Category.defense, with(aorItems.titaniumIngot, 6*4, aorItems.wolframiteIngot, 5*4));
+            health = 500*4;
+            armor = 8;
+            size = 2;
+        }};
+        engine = new Wall("engine"){{
+            requirements(Category.units, with(Items.copper,1));
+            size = 2;
+        }};
+        t90Turret = new Wall("t-90-turret"){{
+            requirements(Category.units, with(Items.copper,1));
+            size = 2;
+        }};
+        t14Turret = new Wall("t-14-turret"){{
+            requirements(Category.units, with(Items.copper,1));
+            size = 2;
+        }};
+        //units factory
+        sovietTankFabricator = new UnitFactory("soviet-tank-fabricator"){{
+            requirements(Category.units, with(Items.silicon, 200, Items.beryllium, 150));
+            size = 3;
+            configurable = false;
+            plans = Seq.with(
+            new UnitPlan(aorUnits.bt7, 60f * 55f, with(aorItems.ironPlate, 60, aorItems.ironRod, 20, aorItems.ironIngot, 70)),
+            new UnitPlan(aorUnits.btr80, 60f * 70f, with(aorItems.ironPlate, 80, aorItems.ironRod, 50, aorItems.ironIngot, 100)),
+            new UnitPlan(aorUnits.t34, 60f * 80f, with(aorItems.ironPlate, 120, aorItems.ironRod, 70, aorItems.ironIngot, 120))
+            );
+            fogRadius = 3;
+            consumePower(2f);
+        }};
+        sovietTankAssembler = new UnitAssembler("soviet-tank-assembler"){{
+            requirements(Category.units, with(Items.thorium, 500, Items.oxide, 150, Items.carbide, 80, Items.silicon, 500));
+            size = 5;
+            plans.add(
+                    new AssemblerUnitPlan(aorUnits.t90, 60f * 100f, PayloadStack.list(aorBlocks.engine, 1, aorBlocks.t90Turret, 1, aorBlocks.bigSteelWall, 20)),
+                    new AssemblerUnitPlan(aorUnits.t14, 60f * 120f, PayloadStack.list(aorBlocks.engine, 1, aorBlocks.t14Turret, 1, aorBlocks.bigSteelWall, 35))
+            );
+            areaSize = 13;
+            researchCostMultiplier = 0.4f;
+
+            consumePower(3f);
         }};
     }
 }

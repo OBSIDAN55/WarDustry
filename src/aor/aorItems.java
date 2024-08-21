@@ -10,7 +10,7 @@ public class aorItems {
     public static Item
 
     //items
-    gematiteItem,malachiteItem,aluminiumItem,leadItem,steelItem,sphaleriteItem,titaniumItem,wolframiteItem,petcoke,bitumen, uranium,
+    gematiteItem,malachiteItem,aluminiumItem,leadItem,steelItem,sphaleriteItem,titaniumItem,wolframiteItem,petcoke,bitumen, uranium, rock,
     //ingots
     ironIngot,copperIngot,aluminiumIngot,leadIngot,zincIngot,titaniumIngot,wolframiteIngot,
     //plates
@@ -76,6 +76,12 @@ public class aorItems {
             radioactivity = 0f;
         }};
         //items
+        rock = new Item("rock"){{
+            cost = 1f;
+            explosiveness = 0f;
+            hardness = 1;
+            radioactivity = 0f;
+        }};
         aluminiumItem = new Item("aluminium-item", Color.valueOf(alucol)){{
             cost = 1f;
             explosiveness = 0f;

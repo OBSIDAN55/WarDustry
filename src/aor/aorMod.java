@@ -2,6 +2,7 @@ package aor;
 
 import aor.audio.Sfx;
 import aor.content.*;
+import mindustry.Vars;
 import mindustry.content.Blocks;
 import mindustry.mod.Mod;
 
@@ -29,7 +30,7 @@ public class aorMod extends Mod {
         Sfx.load();
         Attribute.add("tar");
         Attribute.add("water");
-
+        Attribute.add("rock");
         mindustry.content.Blocks.tar.attributes.set(Attribute.get("tar"), 1);
         Blocks.deepwater.attributes.set(Attribute.get("water"), 1);
         Blocks.water.attributes.set(Attribute.get("water"), 1);

@@ -9,12 +9,12 @@ import mindustry.world.meta.StatUnit;
 import static aor.aorMod.*;
 
 public class WeighLiquidStackConveyor extends StackConveyor {
-    public ItemStack[] items = aorItems.gematiteItem.researchRequirements();
-
+    public final int timerFlow = timers++;
 
     public WeighLiquidStackConveyor(String name) {
         super(name);
         hasLiquids = true;
+
     }
     public void setStats() {
         super.setStats();
@@ -33,8 +33,8 @@ public class WeighLiquidStackConveyor extends StackConveyor {
         public class WeighLiquidStackConveyorBuild extends StackConveyor.StackConveyorBuild{
         @Override
         public void updateTile(){
-            if(liquids.currentAmount() > 0.01f){
-                dumpLiquid(liquids.current());
+            if(liquids.currentAmount() > 0.0001f && timer(timerFlow, 1)){
+                moveLiquidForward(false, liquids.current());
             }
             if(lastItem != null) {
                 if (lastItem.hardness == 1) {speed = 0.04f;}

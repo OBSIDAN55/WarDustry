@@ -8,19 +8,13 @@ import arc.graphics.Color;
 import arc.math.geom.Rect;
 import arc.struct.ObjectIntMap;
 import mindustry.content.Fx;
-import mindustry.content.Items;
-import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.BasicBulletType;
-import mindustry.entities.bullet.RailBulletType;
 import mindustry.entities.part.RegionPart;
 import mindustry.entities.pattern.ShootBarrel;
-import mindustry.entities.pattern.ShootPattern;
 import mindustry.gen.Entityc;
 import mindustry.gen.Sounds;
-import mindustry.gen.UnitEntity;
 import mindustry.type.UnitType;
 import mindustry.type.Weapon;
-import mindustry.type.ammo.ItemAmmoType;
 import mindustry.type.unit.TankUnitType;
 import arc.struct.ObjectMap.Entry;
 import mindustry.gen.*;
@@ -33,9 +27,18 @@ public class aorUnits {
     bt7, t34, btr80, t90, t14,
     //usa unit tree
     m1CombatCar, m41, m48, mbt70, m1Abrams,
-    //TODO new unit tree
+    //chinese unit tree
+    t59, t80, t99, mbt2000, vt4,
     //aviation
-    mig29, b32, mig24,
+    mig29, b32,
+    //heli
+    mig24, ka52,
+    //todo naval units 0/9
+    //todo air units 0/6
+    //todo support units 1/6
+    //todo heli units 2/9
+    //naval
+    rk183r,
     //coreUnits
     ruined,
     //heli
@@ -728,6 +731,281 @@ public class aorUnits {
             );
         }};
         //chinese unit tree
+        t59 = new TankUnitType("t-59"){{
+            this.constructor=TankUnit::create;
+            hitSize = 18;
+            treadPullOffset = 5;
+            speed = 1.4f;
+            rotateSpeed = 1.1f;
+            health = 2100;
+            armor = 8;
+            itemCapacity = 0;
+            omniMovement = false;
+            range = 700;
+            outlineColor = Color.valueOf("000000ff");
+            weapons.add(new Weapon(name + "-weapon"){{
+                            layerOffset = 0.0001f;
+                            outlineColor = Color.valueOf("000000ff");
+                            reload = 252;
+                            rotate = true;
+                            recoil = 0;
+                            rotateSpeed = 1.2f;
+                            mirror = false;
+                            x = 0;
+                            y = 0;
+                            cooldownTime = 30;
+                            top = true;
+                            shootSound = Sounds.largeCannon;
+                            shootY = 45;
+                            bullet = new BasicBulletType(600,20){{
+                                pierce = true;
+                                pierceCap = 3;
+                                drag=  0.01f;
+                                smokeEffect = Fx.shootBigSmoke;
+                                shootEffect = Fx.shootBigColor;
+                                width = 5;
+                                height = 7;
+                                lifetime = 28;
+                                hitSize = 4;
+                                trailWidth = 1.7f;
+                                trailLength = 5;
+                                despawnEffect = Fx.hitBulletColor;
+                            }};
+                            parts.addAll(
+                                    new RegionPart("-part"){{
+                                        progress = PartProgress.recoil;
+                                        mirror = false;
+                                        under = true;
+                                        top = true;
+                                        y = (float) 58 /4;
+                                        moveY = -2;
+                                        outline = false;
+                                    }}
+                            );
+
+                        }}
+            );
+        }};
+        t80 = new TankUnitType("t-80"){{
+            this.constructor=TankUnit::create;
+            hitSize = 18;
+            treadPullOffset = 5;
+            speed = 1.4f;
+            rotateSpeed = 1.1f;
+            health = 2100;
+            armor = 8;
+            itemCapacity = 0;
+            omniMovement = false;
+            range = 700;
+            outlineColor = Color.valueOf("000000ff");
+            weapons.add(new Weapon(name + "-weapon"){{
+                            layerOffset = 0.0001f;
+                            outlineColor = Color.valueOf("000000ff");
+                            reload = 252;
+                            rotate = true;
+                            recoil = 0;
+                            rotateSpeed = 1.2f;
+                            mirror = false;
+                            x = 0;
+                            y = 0;
+                            cooldownTime = 30;
+                            top = true;
+                            shootSound = Sounds.largeCannon;
+                            shootY = 45;
+                            bullet = new BasicBulletType(600,20){{
+                                pierce = true;
+                                pierceCap = 3;
+                                drag=  0.01f;
+                                smokeEffect = Fx.shootBigSmoke;
+                                shootEffect = Fx.shootBigColor;
+                                width = 5;
+                                height = 7;
+                                lifetime = 28;
+                                hitSize = 4;
+                                trailWidth = 1.7f;
+                                trailLength = 5;
+                                despawnEffect = Fx.hitBulletColor;
+                            }};
+                            parts.addAll(
+                                    new RegionPart("-part"){{
+                                        progress = PartProgress.recoil;
+                                        mirror = false;
+                                        under = true;
+                                        top = true;
+                                        y = (float) 58 /4;
+                                        moveY = -2;
+                                        outline = false;
+                                    }}
+                            );
+
+                        }}
+            );
+        }};
+        t99 = new TankUnitType("t-99"){{
+            this.constructor=TankUnit::create;
+            hitSize = 18;
+            treadPullOffset = 5;
+            speed = 1.4f;
+            rotateSpeed = 1.1f;
+            health = 2100;
+            armor = 8;
+            itemCapacity = 0;
+            omniMovement = false;
+            range = 700;
+            outlineColor = Color.valueOf("000000ff");
+            weapons.add(new Weapon(name + "-weapon"){{
+                            layerOffset = 0.0001f;
+                            outlineColor = Color.valueOf("000000ff");
+                            reload = 252;
+                            rotate = true;
+                            recoil = 0;
+                            rotateSpeed = 1.2f;
+                            mirror = false;
+                            x = 0;
+                            y = 0;
+                            cooldownTime = 30;
+                            top = true;
+                            shootSound = Sounds.largeCannon;
+                            shootY = 45;
+                            bullet = new BasicBulletType(600,20){{
+                                pierce = true;
+                                pierceCap = 3;
+                                drag=  0.01f;
+                                smokeEffect = Fx.shootBigSmoke;
+                                shootEffect = Fx.shootBigColor;
+                                width = 5;
+                                height = 7;
+                                lifetime = 28;
+                                hitSize = 4;
+                                trailWidth = 1.7f;
+                                trailLength = 5;
+                                despawnEffect = Fx.hitBulletColor;
+                            }};
+                            parts.addAll(
+                                    new RegionPart("-part"){{
+                                        progress = PartProgress.recoil;
+                                        mirror = false;
+                                        under = true;
+                                        top = true;
+                                        y = (float) 58 /4;
+                                        moveY = -2;
+                                        outline = false;
+                                    }}
+                            );
+
+                        }}
+            );
+        }};
+        mbt2000 = new TankUnitType("mbt-2000"){{
+            this.constructor=TankUnit::create;
+            hitSize = 18;
+            treadPullOffset = 5;
+            speed = 1.4f;
+            rotateSpeed = 1.1f;
+            health = 2100;
+            armor = 8;
+            itemCapacity = 0;
+            omniMovement = false;
+            range = 700;
+            outlineColor = Color.valueOf("000000ff");
+            weapons.add(new Weapon(name + "-weapon"){{
+                            layerOffset = 0.0001f;
+                            outlineColor = Color.valueOf("000000ff");
+                            reload = 252;
+                            rotate = true;
+                            recoil = 0;
+                            rotateSpeed = 1.2f;
+                            mirror = false;
+                            x = 0;
+                            y = 0;
+                            cooldownTime = 30;
+                            top = true;
+                            shootSound = Sounds.largeCannon;
+                            shootY = 45;
+                            bullet = new BasicBulletType(600,20){{
+                                pierce = true;
+                                pierceCap = 3;
+                                drag=  0.01f;
+                                smokeEffect = Fx.shootBigSmoke;
+                                shootEffect = Fx.shootBigColor;
+                                width = 5;
+                                height = 7;
+                                lifetime = 28;
+                                hitSize = 4;
+                                trailWidth = 1.7f;
+                                trailLength = 5;
+                                despawnEffect = Fx.hitBulletColor;
+                            }};
+                            parts.addAll(
+                                    new RegionPart("-part"){{
+                                        progress = PartProgress.recoil;
+                                        mirror = false;
+                                        under = true;
+                                        top = true;
+                                        y = (float) 58 /4;
+                                        moveY = -2;
+                                        outline = false;
+                                    }}
+                            );
+
+                        }}
+            );
+        }};
+        vt4 = new TankUnitType("vt-4"){{
+            this.constructor=TankUnit::create;
+            hitSize = 18;
+            treadPullOffset = 5;
+            speed = 1.4f;
+            rotateSpeed = 1.1f;
+            health = 2100;
+            armor = 8;
+            itemCapacity = 0;
+            omniMovement = false;
+            range = 700;
+            outlineColor = Color.valueOf("000000ff");
+            weapons.add(new Weapon(name + "-weapon"){{
+                            layerOffset = 0.0001f;
+                            outlineColor = Color.valueOf("000000ff");
+                            reload = 252;
+                            rotate = true;
+                            recoil = 0;
+                            rotateSpeed = 1.2f;
+                            mirror = false;
+                            x = 0;
+                            y = 0;
+                            cooldownTime = 30;
+                            top = true;
+                            shootSound = Sounds.largeCannon;
+                            shootY = 45;
+                            bullet = new BasicBulletType(600,20){{
+                                pierce = true;
+                                pierceCap = 3;
+                                drag=  0.01f;
+                                smokeEffect = Fx.shootBigSmoke;
+                                shootEffect = Fx.shootBigColor;
+                                width = 5;
+                                height = 7;
+                                lifetime = 28;
+                                hitSize = 4;
+                                trailWidth = 1.7f;
+                                trailLength = 5;
+                                despawnEffect = Fx.hitBulletColor;
+                            }};
+                            parts.addAll(
+                                    new RegionPart("-part"){{
+                                        progress = PartProgress.recoil;
+                                        mirror = false;
+                                        under = true;
+                                        top = true;
+                                        y = (float) 58 /4;
+                                        moveY = -2;
+                                        outline = false;
+                                    }}
+                            );
+
+                        }}
+            );
+        }};
 
         //core units
 
@@ -815,6 +1093,104 @@ public class aorUnits {
                         rotorTopSizeScl = 0.8f;
                     }}
             );
+        }};
+
+        ka52 = new HelicopterUnitType("ka-52"){{
+            float unitRange = 28 * tilesize;
+            health = 450;
+            hitSize = 90;
+
+            speed = 2.5f;
+            accel = 0.04f;
+            drag = 0.016f;
+            rotateSpeed = 5.5f;
+
+            circleTarget = true;
+            lowAltitude = true;
+            faceTarget = flying = true;
+            range = unitRange;
+
+            fallSpeed = 0.0015f;
+            spinningFallSpeed = 4;
+            fallSmokeY = -10f;
+            engineSize = 0;
+
+            constructor = CopterUnitEntity::new;
+
+            rotors.add(
+                    new Rotor(name + "-blade") {{
+                        x = y =  0;
+                        rotorSpeed = -50f;
+                        bladeCount = 3;
+                        rotorTopSizeScl = 0.8f;
+                    }}
+            );
+        }};
+
+        rk183r = new UnitType("rk-183r"){{
+            this.constructor = UnitWaterMove::create;
+            health = 450;
+            hitSize = 90;
+
+            speed = 2.5f;
+            accel = 0.04f;
+            drag = 0.016f;
+            rotateSpeed = 5.5f;
+
+            weapons.add(new Weapon(name +"-weapon1"){{
+                x=0;
+                y = 7.5f;
+                outlineColor = Color.valueOf("000000ff");
+                reload = 3;
+                rotate = true;
+                recoil = 0.3f;
+                rotateSpeed = 1.9f;
+                mirror = false;
+                top = true;
+                shootSound = Sounds.shootSnap;
+                shootY = 2;
+                bullet = new BasicBulletType(20,60){{
+                    pierce = true;
+                    pierceCap = 3;
+                    drag=  0.01f;
+                    smokeEffect = Fx.shootBigSmoke;
+                    shootEffect = Fx.shootBigColor;
+                    width = 5;
+                    height = 7;
+                    lifetime = 28;
+                    hitSize = 4;
+                    trailWidth = 1.7f;
+                    trailLength = 5;
+                    despawnEffect = Fx.hitBulletColor;
+                }};
+            }});
+            weapons.add(new Weapon(name +"-weapon2"){{
+                x=0;
+                y = -12.5f;
+                outlineColor = Color.valueOf("000000ff");
+                reload = 4;
+                rotate = true;
+                recoil = 0.3f;
+                rotateSpeed = 1.9f;
+                mirror = false;
+                top = true;
+                shootSound = Sounds.shootSnap;
+                shootY = 2;
+                bullet = new BasicBulletType(20,60){{
+                    pierce = true;
+                    pierceCap = 3;
+                    drag=  0.01f;
+                    smokeEffect = Fx.shootBigSmoke;
+                    shootEffect = Fx.shootBigColor;
+                    width = 5;
+                    height = 7;
+                    lifetime = 28;
+                    hitSize = 4;
+                    trailWidth = 1.7f;
+                    trailLength = 5;
+                    despawnEffect = Fx.hitBulletColor;
+                }};
+            }});
         }};
 
     }

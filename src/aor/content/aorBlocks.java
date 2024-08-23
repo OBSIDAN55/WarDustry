@@ -48,8 +48,11 @@ import static mindustry.type.ItemStack.with;
 
 public class aorBlocks {
     public static Block
+
+            //todo спрайты нерф печек буст буров и ригов капитально переделай цены ибо это пиздец полный
     //production
-    furnace, cokeBattery, blastFurnace, arcFurnace, press, moldingMachine, oilRig, oilPlatform, oilDistiller, oilRefinery, oxidativeReactor, lubricationPlant, baseAssembler,gasCentrifuge,
+    furnace, cokeBattery, blastFurnace, arcFurnace, press, moldingMachine, oilRig, oilPlatform, oilDistiller, oilRefinery, oxidativeReactor,
+    lubricationPlant, baseAssembler,gasCentrifuge,
     //turrets
     flamethrower, miniGun, railGun, rocketLauncher,
     //power
@@ -60,7 +63,9 @@ public class aorBlocks {
     //drills
     pneumaticDrill, keroseneDrill, gasolineDrill, dieselDrill, drillingRig,
     //distribution
-    oilConveyor, oilRouter, gasolineConveyor, gasolineRouter, energyConveyor, energyRouter, liquidPipe, heatPipe, heatRouter, waterPump, pumpingStation, liquidTank, aboveGroundPipe,
+    oilConveyor, oilRouter, oilJunction,gasolineConveyor, gasolineRouter, gasolineJunction, energyConveyor, energyRouter, energyJunction,
+    waterPump, pumpingStation, liquidTank, aboveGroundPipe, liquidPipe,
+    heatPipe, heatRouter,
     //cores
     coreCreation, coreDestruction,
     //environment
@@ -585,14 +590,14 @@ public class aorBlocks {
         }};
         //distribution
         oilConveyor = new WeighLiquidStackConveyor("oil-conveyor"){{
-            requirements(Category.distribution, with(aorItems.ironPlate, 5));
+            requirements(Category.distribution, with(aorItems.ironPlate, 2));
             speed = 1;
             itemCapacity = 30;
             liquidCapacity = 20;
             consumeLiquid(mindustry.content.Liquids.oil, 0.2f/60f);
         }};
         oilRouter = new WeighLiquidStackRouter("oil-router"){{
-            requirements(Category.distribution, with(aorItems.ironPlate, 50));
+            requirements(Category.distribution, with(aorItems.ironPlate, 20));
             health = 130;
             liquidCapacity = 20;
             consumeLiquid(mindustry.content.Liquids.oil, 0.6f/60f);
@@ -600,15 +605,23 @@ public class aorBlocks {
             underBullets = true;
             solid = false;
         }};
+        oilJunction = new WeighLiquidJunction("oil-junction"){{
+            requirements(Category.distribution, with(aorItems.ironPlate, 20));
+            speed = 100;
+            capacity = 10;
+            health = 30;
+            buildCostMultiplier = 6f;
+            consumeLiquid(mindustry.content.Liquids.oil, 0.6f/60f);
+        }};
         gasolineConveyor = new WeighLiquidStackConveyor("gasoline-conveyor"){{
-            requirements(Category.distribution, with(aorItems.ironPlate, 5, aorItems.steelPlate, 5 ));
+            requirements(Category.distribution, with(aorItems.ironPlate, 2, aorItems.steelPlate, 2 ));
             speed = 0.2f;
             itemCapacity = 50;
             liquidCapacity = 60;
             consumeLiquid(aorLiquids.gasoline, 0.5f/60f);
         }};
         gasolineRouter = new WeighLiquidStackRouter("gasoline-router"){{
-            requirements(Category.distribution, with(aorItems.ironPlate, 50, aorItems.steelPlate, 50));
+            requirements(Category.distribution, with(aorItems.ironPlate, 20, aorItems.steelPlate, 20));
             health = 130;
             liquidCapacity = 20;
             consumeLiquid(aorLiquids.gasoline, 1.5f/60f);
@@ -616,8 +629,16 @@ public class aorBlocks {
             underBullets = true;
             solid = false;
         }};
+        gasolineJunction = new WeighLiquidJunction("gasoline-junction"){{
+            requirements(Category.distribution, with(aorItems.ironPlate, 20, aorItems.steelPlate, 20));
+            speed = 100;
+            capacity = 10;
+            health = 30;
+            buildCostMultiplier = 6f;
+            consumeLiquid(mindustry.content.Liquids.oil, 0.6f/60f);
+        }};
         energyConveyor = new WeighStackConveyor("energy-conveyor"){{
-            requirements(Category.distribution, with(aorItems.steelPlate, 5, aorItems.electricMotor,5));
+            requirements(Category.distribution, with(aorItems.steelPlate, 2, aorItems.electricMotor,2));
             speed = 0.3f;
             itemCapacity = 50;
             outputRouter = false;
@@ -629,7 +650,7 @@ public class aorBlocks {
             consumePower(3/60f);
         }};
         energyRouter = new StackRouter("energy-router"){{
-            requirements(Category.distribution, with(aorItems.steelPlate, 50, aorItems.electricMotor,50));
+            requirements(Category.distribution, with(aorItems.steelPlate, 20, aorItems.electricMotor,20));
             health = 130;
             speed = 6f;
             hasPower = true;
@@ -705,13 +726,14 @@ public class aorBlocks {
             hasPower = false;
         }};
         //drills
-        pneumaticDrill = new Drill("pneumatic-drill"){{
+        pneumaticDrill = new OilDrill("pneumatic-drill"){{
             requirements(Category.production, with(aorItems.ironIngot, 20,aorItems.copperPlate, 10));
             drillTime = 280;
             size = 2;
             tier = 2;
             updateEffect = Fx.pulverizeMedium;
             drillEffect = Fx.mineBig;
+            consumeLiquid(mindustry.content.Liquids.oil, 0.15f/60f);
             consumeLiquid(mindustry.content.Liquids.water, 0.06f).boost();
         }};
         keroseneDrill = new Drill("kerosene-drill"){{
@@ -857,8 +879,8 @@ public class aorBlocks {
             liquidCapacity = 200f;
             consumeItem(aorItems.nuclearFuel, 1);
             hasLiquids = true;
-            consumeLiquid(Liquids.water,4.2f);
-            outputLiquid = new LiquidStack(aorLiquids.steam, 4);
+            consumeLiquid(Liquids.water,(18*4+2)/60f);
+            outputLiquid = new LiquidStack(aorLiquids.steam, 18*4/60f);
             heatOutput = 120f;
             explosionPuddleRange = 7;
             explosionPuddleAmount = 200;

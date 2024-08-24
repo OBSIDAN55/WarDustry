@@ -84,7 +84,6 @@ public class HeatNuclearReactor  extends HeatProducer {
         public void updateTile() {
             if(act == 0 && !items.empty()){
                 act = 1;
-                startSound.at(this);
             }
             if(items.empty()){
                 act = 0;

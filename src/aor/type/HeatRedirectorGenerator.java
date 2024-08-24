@@ -20,7 +20,6 @@ import mindustry.graphics.Pal;
 import mindustry.type.LiquidStack;
 import mindustry.ui.Bar;
 import mindustry.world.blocks.heat.HeatConductor;
-import mindustry.world.blocks.power.PowerGenerator;
 import mindustry.world.consumers.ConsumeItemFilter;
 import mindustry.world.consumers.ConsumeLiquidFilter;
 import mindustry.world.draw.DrawBlock;

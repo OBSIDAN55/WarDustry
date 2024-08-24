@@ -32,6 +32,9 @@ import mindustry.world.blocks.heat.HeatConductor;
 import mindustry.world.blocks.liquid.ArmoredConduit;
 import mindustry.world.blocks.liquid.LiquidBridge;
 import mindustry.world.blocks.liquid.LiquidRouter;
+import mindustry.world.blocks.power.Battery;
+import mindustry.world.blocks.power.PowerNode;
+import mindustry.world.blocks.power.SolarGenerator;
 import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.storage.CoreBlock;
 import mindustry.world.blocks.units.UnitAssembler;
@@ -42,14 +45,13 @@ import mindustry.world.meta.BlockGroup;
 import aor.multicraft.MultiCrafter;
 import aor.multicraft.Recipe;
 
-
 import static mindustry.gen.Sounds.flame;
 import static mindustry.type.ItemStack.with;
 
 public class aorBlocks {
     public static Block
 
-            //todo спрайты нерф печек буст буров и ригов капитально переделай цены ибо это пиздец полный
+            //todo спрайты
     //production
     furnace, cokeBattery, blastFurnace, arcFurnace, press, moldingMachine, oilRig, oilPlatform, oilDistiller, oilRefinery, oxidativeReactor,
     lubricationPlant, baseAssembler,gasCentrifuge,
@@ -57,13 +59,13 @@ public class aorBlocks {
     flamethrower, miniGun, railGun, rocketLauncher,
     //power
     boiler,steamGenerator, nuclearReactor, heatExchanger, steamTurbine, solarPanel,fuelGenerator,
-    ElectricTransmissionLine, substation, accumulator,
+    electricTransmissionLine, substation, zincBattery,
     //effect
     antiTankMine,
     //drills
     pneumaticDrill, keroseneDrill, gasolineDrill, dieselDrill, drillingRig,
     //distribution
-    oilConveyor, oilRouter, oilJunction,gasolineConveyor, gasolineRouter, gasolineJunction, energyConveyor, energyRouter, energyJunction,
+    oilConveyor, oilRouter, oilJunction,gasolineConveyor, gasolineRouter, gasolineJunction, energyConveyor, energyRouter, energyJunction, unloader,
     waterPump, pumpingStation, liquidTank, aboveGroundPipe, liquidPipe,
     heatPipe, heatRouter,
     //cores
@@ -87,7 +89,7 @@ public class aorBlocks {
                         input = new IOEntry() {{
                             items = ItemStack.with(
                                     aorItems.gematiteItem, 1,
-                                    Items.coal, 2
+                                    Items.coal, 1
                             );
                         }};
                         output = new IOEntry() {{
@@ -95,13 +97,13 @@ public class aorBlocks {
                                     aorItems.ironIngot, 1
                             );
                         }};
-                        craftTime = 30f;
+                        craftTime = 40f;
                     }},
                     new Recipe() {{
                         input = new IOEntry() {{
                             items = ItemStack.with(
                                     aorItems.malachiteItem, 1,
-                                    Items.coal, 2
+                                    Items.coal, 1
                             );
                         }};
                         output = new IOEntry() {{
@@ -109,13 +111,13 @@ public class aorBlocks {
                                     aorItems.copperIngot, 1
                             );
                         }};
-                        craftTime = 30f;
+                        craftTime = 40f;
                     }},
                     new Recipe() {{
                         input = new IOEntry() {{
                             items = ItemStack.with(
                                     aorItems.leadItem, 1,
-                                    Items.coal, 2
+                                    Items.coal, 1
                             );
                         }};
                         output = new IOEntry() {{
@@ -123,27 +125,13 @@ public class aorBlocks {
                                     aorItems.leadIngot, 1
                             );
                         }};
-                        craftTime = 30f;
-                    }},
-                    new Recipe() {{
-                        input = new IOEntry() {{
-                            items = ItemStack.with(
-                                    aorItems.titaniumItem, 1,
-                                    Items.coal, 2
-                            );
-                        }};
-                        output = new IOEntry() {{
-                            items = ItemStack.with(
-                                    aorItems.titaniumIngot, 1
-                            );
-                        }};
-                        craftTime = 30f;
+                        craftTime = 40f;
                     }},
                     new Recipe() {{
                         input = new IOEntry() {{
                             items = ItemStack.with(
                                     aorItems.aluminiumItem, 1,
-                                    Items.coal, 2
+                                    Items.coal, 1
                             );
                         }};
                         output = new IOEntry() {{
@@ -151,13 +139,13 @@ public class aorBlocks {
                                     aorItems.aluminiumIngot, 1
                             );
                         }};
-                        craftTime = 30f;
+                        craftTime = 40f;
                     }},
                     new Recipe() {{
                         input = new IOEntry() {{
                             items = ItemStack.with(
-                                    aorItems.zincPlate, 1,
-                                    Items.coal, 2
+                                    aorItems.sphaleriteItem, 1,
+                                    Items.coal, 1
                             );
                         }};
                         output = new IOEntry() {{
@@ -165,13 +153,29 @@ public class aorBlocks {
                                     aorItems.zincIngot, 1
                             );
                         }};
-                        craftTime = 30f;
+                        craftTime = 50f;
                     }},
                     new Recipe() {{
                         input = new IOEntry() {{
                             items = ItemStack.with(
+                                    aorItems.titaniumItem, 1,
+                                    Items.coal, 1
+                            );
+                        }};
+                        output = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.titaniumIngot, 1
+                            );
+                        }};
+                        craftTime = 60f;
+                    }},
+
+
+                    new Recipe() {{
+                        input = new IOEntry() {{
+                            items = ItemStack.with(
                                     aorItems.wolframiteItem, 1,
-                                    Items.coal, 2
+                                    Items.coal, 1
                             );
                         }};
                         output = new IOEntry() {{
@@ -179,13 +183,13 @@ public class aorBlocks {
                                     aorItems.wolframiteIngot, 1
                             );
                         }};
-                        craftTime = 30f;
+                        craftTime = 70f;
                     }}
             );
-            craftEffect = aorFx.smoke;
+            updateEffect = aorFx.smoke;
         }};
         press = new MultiCrafter("press"){{
-            requirements(Category.crafting, with(aorItems.ironIngot, 40, aorItems.leadIngot,30, aorItems.copperIngot,15));
+            requirements(Category.crafting, with(aorItems.ironIngot, 40, aorItems.leadIngot,30));
             itemCapacity = 100;
             size = 3;
             resolvedRecipes = Seq.with(
@@ -197,7 +201,7 @@ public class aorBlocks {
                         }};
                         output = new IOEntry() {{
                             items = ItemStack.with(
-                                    aorItems.ironPlate, 2
+                                    aorItems.ironPlate, 3
                             );
                         }};
                         craftTime = 60f;
@@ -210,7 +214,7 @@ public class aorBlocks {
                         }};
                         output = new IOEntry() {{
                             items = ItemStack.with(
-                                    aorItems.copperPlate, 2
+                                    aorItems.copperPlate, 3
                             );
                         }};
                         craftTime = 60f;
@@ -223,7 +227,33 @@ public class aorBlocks {
                         }};
                         output = new IOEntry() {{
                             items = ItemStack.with(
-                                    aorItems.leadPlate, 2
+                                    aorItems.leadPlate, 3
+                            );
+                        }};
+                        craftTime = 60f;
+                    }},
+                    new Recipe() {{
+                        input = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.aluminiumIngot, 1
+                            );
+                        }};
+                        output = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.aluminiumPlate, 3
+                            );
+                        }};
+                        craftTime = 60f;
+                    }},
+                    new Recipe() {{
+                        input = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.zincIngot, 1
+                            );
+                        }};
+                        output = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.zincPlate, 3
                             );
                         }};
                         craftTime = 60f;
@@ -241,32 +271,7 @@ public class aorBlocks {
                         }};
                         craftTime = 60f;
                     }},
-                    new Recipe() {{
-                        input = new IOEntry() {{
-                            items = ItemStack.with(
-                                    aorItems.aluminiumIngot, 1
-                            );
-                        }};
-                        output = new IOEntry() {{
-                            items = ItemStack.with(
-                                    aorItems.aluminiumPlate, 2
-                            );
-                        }};
-                        craftTime = 60f;
-                    }},
-                    new Recipe() {{
-                        input = new IOEntry() {{
-                            items = ItemStack.with(
-                                    aorItems.zincIngot, 1
-                            );
-                        }};
-                        output = new IOEntry() {{
-                            items = ItemStack.with(
-                                    aorItems.zincPlate, 2
-                            );
-                        }};
-                        craftTime = 60f;
-                    }},
+
                     new Recipe(){{
                         input = new IOEntry() {{
                             items = ItemStack.with(
@@ -296,7 +301,7 @@ public class aorBlocks {
                         }};
                         output = new IOEntry(){{
                             items = ItemStack.with(
-                                    aorItems.ironRod,1
+                                    aorItems.ironRod,4
                             );
                         }};
                         craftTime = 60f;
@@ -309,7 +314,7 @@ public class aorBlocks {
                         }};
                         output = new IOEntry(){{
                             items = ItemStack.with(
-                                    aorItems.copperWire,1
+                                    aorItems.copperWire,6
                             );
                         }};
                         craftTime = 60f;
@@ -322,7 +327,7 @@ public class aorBlocks {
                         }};
                         output = new IOEntry(){{
                             items = ItemStack.with(
-                                    aorItems.steelRod,1
+                                    aorItems.steelRod,3
                             );
                         }};
                         craftTime = 60f;
@@ -335,7 +340,7 @@ public class aorBlocks {
                         }};
                         output = new IOEntry(){{
                             items = ItemStack.with(
-                                    aorItems.wolframiteRod,1
+                                    aorItems.wolframiteRod,2
                             );
                         }};
                         craftTime = 60f;
@@ -348,7 +353,7 @@ public class aorBlocks {
                         }};
                         output = new IOEntry(){{
                             items = ItemStack.with(
-                                    aorItems.carbonElectrode,1
+                                    aorItems.carbonElectrode,4
                             );
                         }};
                         craftTime = 60f;
@@ -438,14 +443,13 @@ public class aorBlocks {
 
         }};
         oilRig = new AttributeCrafter("oil-rig"){{
-            requirements(Category.production, with(aorItems.aluminiumIngot, 30, aorItems.aluminiumPlate, 45,aorItems.ironIngot, 70,
-                    aorItems.ironPlate, 45, aorItems.leadIngot, 55, aorItems.copperPlate, 30, aorItems.copperIngot, 20));
+            requirements(Category.production, with(aorItems.ironIngot, 70, aorItems.ironPlate, 45, aorItems.leadIngot, 55, aorItems.copperPlate, 30, aorItems.copperIngot, 20));
             size = 3;
             attribute = Attribute.oil;
             baseEfficiency = 0;
             minEfficiency = 1;
             consumeLiquid(aorLiquids.steam, 9/60f);
-            outputLiquid = new LiquidStack(mindustry.content.Liquids.oil, 10/60f);
+            outputLiquid = new LiquidStack(mindustry.content.Liquids.oil, 15/60f);
             drawer = new DrawMulti(
                     new DrawRegion("-bottom"),
                     new DrawLiquidTile(aorLiquids.pressure),
@@ -465,11 +469,11 @@ public class aorBlocks {
         }};
         oilPlatform = new AttributeCrafter("oil-platform"){{
             requirements(Category.liquid, with(aorItems.aluminiumIngot, 120, aorItems.aluminiumPlate, 150,aorItems.ironIngot, 130,
-                    aorItems.ironPlate, 250, aorItems.leadIngot, 165, aorItems.copperPlate, 200, aorItems.copperIngot, 150, aorItems.zincIngot, 50, aorItems.zincPlate, 40));
+                    aorItems.ironPlate, 250, aorItems.leadIngot, 165, aorItems.zincIngot, 50, aorItems.zincPlate, 40));
             size = 4;
             attribute = Attribute.get("tar");
             consumeLiquid(aorLiquids.steam, 18/60f);
-            outputLiquid = new LiquidStack(Liquids.oil, 30/60f);
+            outputLiquid = new LiquidStack(Liquids.oil, 40/60f);
             craftTime = 60;
             floating = true;
             baseEfficiency = 0;
@@ -505,7 +509,7 @@ public class aorBlocks {
             liquidCapacity = 40;
             consumePower(20f);
             consumeLiquid(mindustry.content.Liquids.oil, 10/60f);
-            outputLiquids = LiquidStack.with(aorLiquids.kerosene, 10/3/60f, aorLiquids.gasoline, 10/60/3f, aorLiquids.diesel, 10/3/60f);
+            outputLiquids = LiquidStack.with(aorLiquids.kerosene, 10/3/60f, aorLiquids.gasoline, 10/3/60f, aorLiquids.diesel, 10/3/60f);
             craftTime = 30;
             updateEffect = aorFx.smoke;
             liquidOutputDirections = new int[]{1,2,3};
@@ -680,11 +684,11 @@ public class aorBlocks {
         }};
         waterPump = new AttributeCrafter("water-pump"){{
             requirements(Category.liquid, with(aorItems.aluminiumIngot, 80, aorItems.aluminiumPlate, 50,aorItems.ironIngot, 20,
-                    aorItems.ironPlate, 500, aorItems.leadIngot, 15, aorItems.copperPlate, 20, aorItems.copperIngot, 10));
+                    aorItems.ironPlate, 500, aorItems.leadIngot, 15));
             size = 3;
             attribute = Attribute.get("water");
-            outputLiquid = new LiquidStack(Liquids.water, 1);
-            craftTime = 60;
+            outputLiquid = new LiquidStack(Liquids.water, 2);
+            craftTime = 30;
             floating = true;
             baseEfficiency = 0;
             minEfficiency = 1;
@@ -693,12 +697,13 @@ public class aorBlocks {
         }};
         pumpingStation = new AttributeCrafter("pumping-station"){{
             requirements(Category.liquid, with(aorItems.aluminiumIngot, 120, aorItems.aluminiumPlate, 150,aorItems.ironIngot, 130,
-                    aorItems.ironPlate, 250, aorItems.leadIngot, 165, aorItems.copperPlate, 200, aorItems.copperIngot, 150, aorItems.titaniumPlate, 80,
+                    aorItems.ironPlate, 250, aorItems.leadIngot, 165, aorItems.titaniumPlate, 80,
                     aorItems.titaniumIngot, 140, aorItems.steelPlate, 80, aorItems.steelRod, 40));
             size = 4;
             attribute = Attribute.get("water");
-            outputLiquid = new LiquidStack(Liquids.water, 1);
+            outputLiquid = new LiquidStack(Liquids.water, 3);
             craftTime = 20;
+            consumePower(570/60f);
             floating = true;
             baseEfficiency = 0;
             minEfficiency = 1;
@@ -706,20 +711,20 @@ public class aorBlocks {
             displayEfficiency = true;
         }};
         liquidPipe = new ArmoredConduit("liquid-pipe"){{
-            requirements(Category.liquid, with(aorItems.ironPlate, 5, aorItems.leadPlate, 5));
+            requirements(Category.liquid, with(aorItems.ironPlate, 2, aorItems.leadPlate, 2));
             liquidCapacity = 16f;
             liquidPressure = 1.025f;
             health = 220;
         }};
         liquidTank = new LiquidRouter("liquid-tank"){{
-            requirements(Category.liquid, with(aorItems.ironPlate, 500, aorItems.steelPlate,100));
+            requirements(Category.liquid, with(aorItems.ironPlate, 300, aorItems.steelPlate,50));
             size = 3;
             solid = true;
             liquidCapacity = 2000f;
             health = 500;
         }};
         aboveGroundPipe = new LiquidBridge("above-ground-pipe"){{
-            requirements(Category.liquid, with(aorItems.ironPlate, 10, aorItems.leadPlate, 5));
+            requirements(Category.liquid, with(aorItems.ironPlate, 10, aorItems.leadPlate, 10));
             fadeIn = moveArrows = false;
             arrowSpacing = 6f;
             range = 6;
@@ -728,43 +733,43 @@ public class aorBlocks {
         //drills
         pneumaticDrill = new OilDrill("pneumatic-drill"){{
             requirements(Category.production, with(aorItems.ironIngot, 20,aorItems.copperPlate, 10));
-            drillTime = 280;
+            drillTime = 240;
             size = 2;
             tier = 2;
             updateEffect = Fx.pulverizeMedium;
             drillEffect = Fx.mineBig;
             consumeLiquid(mindustry.content.Liquids.oil, 0.15f/60f);
-            consumeLiquid(mindustry.content.Liquids.water, 0.06f).boost();
+            consumeLiquid(mindustry.content.Liquids.water, 5f/60f).boost();
         }};
         keroseneDrill = new Drill("kerosene-drill"){{
             requirements(Category.production, with(aorItems.ironIngot, 25,aorItems.copperPlate, 15, aorItems.aluminiumIngot, 10, aorItems.leadPlate, 15));
-            drillTime = 280;
+            drillTime = 200;
             size = 3;
             tier = 3;
             updateEffect = Fx.pulverizeMedium;
             drillEffect = Fx.mineBig;
             consumeLiquid(aorLiquids.kerosene, 0.5f / 60f);
-            consumeLiquid(mindustry.content.Liquids.water, 3f / 60f).boost();
+            consumeLiquid(mindustry.content.Liquids.water, 6f / 60f).boost();
         }};
         gasolineDrill = new Drill("gasoline-drill"){{
             requirements(Category.production, with(aorItems.ironIngot, 50,aorItems.copperPlate, 30, aorItems.aluminiumIngot, 30, aorItems.leadPlate, 20, aorItems.steelPlate, 60, aorItems.ironRod, 30));
-            drillTime = 280;
+            drillTime = 170;
             size = 4;
             tier = 4;
             updateEffect = Fx.pulverizeMedium;
             drillEffect = Fx.mineBig;
             consumeLiquid(aorLiquids.gasoline, 0.5f / 60f);
-            consumeLiquid(mindustry.content.Liquids.water, 3f / 60f).boost();
+            consumeLiquid(mindustry.content.Liquids.water, 6f / 60f).boost();
         }};
         dieselDrill = new Drill("diesel-drill"){{
             requirements(Category.production, with(aorItems.ironIngot, 150,aorItems.copperPlate, 100, aorItems.aluminiumIngot, 100, aorItems.leadPlate, 65, aorItems.steelPlate, 120, aorItems.titaniumPlate, 60, aorItems.ironRod, 50));
-            drillTime = 280;
+            drillTime = 145;
             size = 5;
             tier = 5;
             updateEffect = Fx.pulverizeMedium;
             drillEffect = Fx.mineBig;
             consumeLiquid(aorLiquids.diesel, 0.5f / 60f);
-            consumeLiquid(mindustry.content.Liquids.water, 3f / 60f).boost();
+            consumeLiquid(mindustry.content.Liquids.water, 6f / 60f).boost();
         }};
         drillingRig = new WallCrafter("drilling-rig"){{
             requirements(Category.production, with(aorItems.ironIngot, 200,aorItems.copperPlate, 30, aorItems.aluminiumIngot, 30, aorItems.leadPlate, 20));
@@ -871,6 +876,58 @@ public class aorBlocks {
            attributes.set(Attribute.get("rock"), 1);
         }};
         //power
+        boiler = new GenericCrafter("boiler"){{
+                    requirements(Category.power, with(aorItems.gematiteItem, 100, aorItems.copperPlate, 50, aorItems.leadIngot, 100));
+                    size = 3;
+                    hasLiquids = true;
+                    liquidCapacity = 80;
+                    itemCapacity = 60;
+                    consumeItem(Items.coal, 3);
+                    consumeLiquid(Liquids.water, 36/60f);
+                    outputLiquid = new LiquidStack(aorLiquids.steam, 27f/60f);
+                    craftTime = 120;
+                    updateEffect = Fx.none;
+                }};
+        steamGenerator = new StackSteamGenerator("steam-generator"){{
+            requirements(Category.power, with(aorItems.ironPlate, 150, aorItems.aluminiumPlate, 75, aorItems.ironRod, 60));
+            powerProduction = 800/60f;
+            consumeLiquid(aorLiquids.steam, 18/60f);
+            hasLiquids = true;
+            liquidCapacity = 150f;
+            size = 3;
+            ambientSound = Sounds.smelter;
+            ambientSoundVolume = 0.06f;
+            drawer = new DrawMulti(
+                    new DrawDefault(),
+                    new DrawRegion("-rotator"){{
+                        spinSprite = true;
+                        rotateSpeed = -35;
+                    }});
+            effectChance = 0.4f;
+            generateEffect = aorFx.steam;
+        }};
+        electricTransmissionLine = new PowerNode("electric-transmission-line") {{
+            requirements(Category.power, with(aorItems.ironRod, 4, aorItems.copperWire, 10));
+            maxNodes = 2;
+            laserRange = 60;
+        }};
+        substation = new PowerNode("substation"){{
+            requirements(Category.power, with(aorItems.ironRod, 6, aorItems.copperWire, 30));
+            size = 3;
+            maxNodes = 30;
+            laserRange = 10;
+        }};
+        zincBattery = new Battery("zinc-battery"){{
+            requirements(Category.power, with(aorItems.ironPlate, 80, aorItems.copperWire, 20, aorItems.zincPlate, 50));
+            size = 2;
+            consumePowerBuffered(20000f);
+            baseExplosiveness = 2f;
+        }};
+        solarPanel = new SolarGenerator("solar-panel"){{
+            requirements(Category.power, with(aorItems.ironPlate, 80, aorItems.copperWire, 20, aorItems.aluminiumPlate, 60, aorItems.ironRod, 30));
+           size = 3;
+           powerProduction = 160/60f;
+        }};
         nuclearReactor = new HeatNuclearReactor("nuclear-reactor"){{
             requirements(Category.power, with(aorItems.bitumen, 1250, aorItems.steelPlate, 1000, aorItems.copperWire, 565, aorItems.wolframiteRod, 345,
                     aorItems.ironRod, 475, aorItems.electricMotor, 50, aorItems.titaniumPlate, 650));
@@ -907,36 +964,8 @@ public class aorBlocks {
                         layer = 110;
                     }});
         }};
-        steamGenerator = new StackSteamGenerator("steam-generator"){{
-            requirements(Category.power, with(aorItems.bitumen, 75, aorItems.ironPlate, 150, aorItems.aluminiumPlate, 75, aorItems.ironRod, 60));
-            powerProduction = 800/60f;
-            consumeLiquid(aorLiquids.steam, 18/60f);
-            hasLiquids = true;
-            liquidCapacity = 150f;
-            size = 3;
-            ambientSound = Sounds.smelter;
-            ambientSoundVolume = 0.06f;
-            drawer = new DrawMulti(
-                    new DrawDefault(),
-                    new DrawRegion("-rotator"){{
-                        spinSprite = true;
-                        rotateSpeed = -35;
-                    }});
-            effectChance = 0.4f;
-            generateEffect = aorFx.steam;
-        }};
-         boiler = new GenericCrafter("boiler"){{
-             requirements(Category.power, with(aorItems.gematiteItem, 100, aorItems.copperPlate, 50, aorItems.leadIngot, 100));
-             size = 3;
-             hasLiquids = true;
-             liquidCapacity = 80;
-             itemCapacity = 60;
-             consumeItem(Items.coal, 3);
-             consumeLiquid(Liquids.water, 36/60f);
-             outputLiquid = new LiquidStack(aorLiquids.steam, 27f/60f);
-             craftTime = 120;
-             updateEffect = Fx.none;
-         }};
+
+
          heatExchanger = new DamageHeatCrafter("heat-exchanger"){{
              requirements(Category.power, with(aorItems.bitumen, 120, aorItems.steelPlate, 100, aorItems.copperWire, 55, aorItems.wolframiteRod, 35,
                      aorItems.ironRod, 45, aorItems.electricMotor, 10, aorItems.titaniumPlate, 65));
@@ -977,11 +1006,11 @@ public class aorBlocks {
                      new DrawHeatInput("-heat"),
                      new DrawRegion("-rotator"){{
                          spinSprite = true;
-                         rotateSpeed = -35;
+                         rotateSpeed = -50;
                      }}
              );
-             //effectChance = 0.4f;
-             //generateEffect = aorFx.steam;
+             effectChance = 0.4f;
+             generateEffect = aorFx.steam;
          }};
         //turrets
         //todo balance turrets

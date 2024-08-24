@@ -51,7 +51,6 @@ import static mindustry.type.ItemStack.with;
 public class aorBlocks {
     public static Block
 
-            //todo спрайты
     //production
     furnace, cokeBattery, blastFurnace, arcFurnace, press, moldingMachine, oilRig, oilPlatform, oilDistiller, oilRefinery, oxidativeReactor,
     lubricationPlant, baseAssembler,gasCentrifuge,
@@ -66,7 +65,7 @@ public class aorBlocks {
     pneumaticDrill, keroseneDrill, gasolineDrill, dieselDrill, drillingRig,
     //distribution
     oilConveyor, oilRouter, oilJunction,gasolineConveyor, gasolineRouter, gasolineJunction, energyConveyor, energyRouter, energyJunction, unloader,
-    waterPump, pumpingStation, liquidTank, aboveGroundPipe, liquidPipe,
+    waterPump, pumpingStation, liquidTank, aboveGroundPipe, liquidPipe, liquidRouter,
     heatPipe, heatRouter,
     //cores
     coreCreation, coreDestruction,
@@ -712,9 +711,16 @@ public class aorBlocks {
         }};
         liquidPipe = new ArmoredConduit("liquid-pipe"){{
             requirements(Category.liquid, with(aorItems.ironPlate, 2, aorItems.leadPlate, 2));
-            liquidCapacity = 16f;
+            liquidCapacity = 10;
             liquidPressure = 1.025f;
             health = 220;
+        }};
+        liquidRouter = new LiquidRouter("liquid-router"){{
+            requirements(Category.liquid, with(aorItems.ironPlate, 2, aorItems.leadPlate, 2));
+            liquidCapacity = 20f;
+            liquidPressure = 1.025f;
+            health = 50;
+            solid = true;
         }};
         liquidTank = new LiquidRouter("liquid-tank"){{
             requirements(Category.liquid, with(aorItems.ironPlate, 300, aorItems.steelPlate,50));

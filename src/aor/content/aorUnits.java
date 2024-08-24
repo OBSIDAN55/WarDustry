@@ -756,7 +756,7 @@ public class aorUnits {
                             cooldownTime = 30;
                             top = true;
                             shootSound = Sounds.largeCannon;
-                            shootY = 45;
+                            shootY = 50;
                             bullet = new BasicBulletType(600,20){{
                                 pierce = true;
                                 pierceCap = 3;
@@ -777,7 +777,7 @@ public class aorUnits {
                                         mirror = false;
                                         under = true;
                                         top = true;
-                                        y = (float) 58 /4;
+                                        y = (float) 49 /4;
                                         moveY = -2;
                                         outline = false;
                                     }}
@@ -832,7 +832,7 @@ public class aorUnits {
                                         mirror = false;
                                         under = true;
                                         top = true;
-                                        y = (float) 58 /4;
+                                        y = (float) 59 /4;
                                         moveY = -2;
                                         outline = false;
                                     }}
@@ -887,7 +887,7 @@ public class aorUnits {
                                         mirror = false;
                                         under = true;
                                         top = true;
-                                        y = (float) 58 /4;
+                                        y = (float) 83 /4;
                                         moveY = -2;
                                         outline = false;
                                     }}
@@ -942,7 +942,7 @@ public class aorUnits {
                                         mirror = false;
                                         under = true;
                                         top = true;
-                                        y = (float) 58 /4;
+                                        y = (float) 100 /4;
                                         moveY = -2;
                                         outline = false;
                                     }}
@@ -997,7 +997,7 @@ public class aorUnits {
                                         mirror = false;
                                         under = true;
                                         top = true;
-                                        y = (float) 58 /4;
+                                        y = (float) 134 /4;
                                         moveY = -2;
                                         outline = false;
                                     }}

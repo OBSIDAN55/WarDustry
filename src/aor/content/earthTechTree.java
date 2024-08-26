@@ -9,7 +9,7 @@ import static mindustry.content.TechTree.*;
 public class earthTechTree {
     public static void load(){
             Planets.earth.techTree = nodeRoot("earth",aorBlocks.coreDestruction,() -> {
-                node(aorUnits.mig24, () -> {
+                node(aorUnits.mi24, () -> {
                 });
                 node(aorBlocks.oilConveyor, () -> {
                     node(aorBlocks.gasolineConveyor, () -> {

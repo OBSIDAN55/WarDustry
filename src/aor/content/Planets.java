@@ -19,9 +19,9 @@ public class Planets {
     public static void load() {
         earth = new Planet("earth", mindustry.content.Planets.sun, 1.05f, 2) {{
              meshLoader = ()-> new MultiMesh(
-                new NoiseMesh(earth,405,6,1f,2,2f,1.1f,1f,Color.valueOf("178735"), Color.red,2,2f,1f,1f),
-                new NoiseMesh(earth,5975,6,1f,2,2f,1.1f,1f,Color.valueOf("115c25"), Color.red,2,2f,1f,1f),
-                new NoiseMesh(earth,564,6,1f,2,2f,1.1f,1f,Color.valueOf("#439c5b"), Color.red,2,2f,1f,1f)
+                new NoiseMesh(earth,405,6,1f,2,2f,1.1f,1f,Color.valueOf("178735"), Color.valueOf("178735"),2,2f,1f,1f),
+                new NoiseMesh(earth,5975,6,1f,2,2f,1.1f,1f,Color.valueOf("115c25"),Color.valueOf("178735"),2,2f,1f,1f),
+                new NoiseMesh(earth,564,6,1f,2,2f,1.1f,1f,Color.valueOf("#439c5b"),Color.valueOf("178735"),2,2f,1f,1f)
              );
             cloudMeshLoader = () -> new MultiMesh(
                 new HexSkyMesh(this, 2, 0.15f, 0.14f, 5, Color.white.a(0.75f), 2, 0.42f, 1f, 0.43f),
@@ -57,7 +57,7 @@ public class Planets {
                 r.staticFog = false;
                 r.lighting = false;
                 r.coreDestroyClear = true;
-                r.onlyDepositCore = true;
+                r.onlyDepositCore = false;
                 r.unitAmmo = true;
             };
 

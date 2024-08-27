@@ -34,14 +34,26 @@ public class aorUnits {
     //heli
     mi24, mi28n, ka52,
 
-
     //usa unit tree
     m1CombatCar, m41, m48, mbt70, m1Abrams,
+    //support
+    uss1, uss2,
+    //naval
+    usn1, usn2,
+    //aviation
+    usa1, usa2,
+    //heli
+    ush1, ush2, ush3,
     //chinese unit tree
     t59, t80, t99, mbt2000, vt4,
+    //support
+    cs1, cs2,
+    //naval
+    cn1, cn2,
     //aviation
-    mig29, b32,
-
+    ca1, ca2,
+    //heli
+    ch1, ch2, ch3,
     //todo naval units 1/9
     //todo air units 0/6
     //todo support units 2/6

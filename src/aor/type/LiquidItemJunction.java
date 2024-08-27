@@ -2,9 +2,9 @@ package aor.type;
 
 import mindustry.world.blocks.distribution.Junction;
 
-public class WeighLiquidJunction extends Junction {
+public class LiquidItemJunction extends Junction {
    // public final int timerFlow = timers++;
-    public WeighLiquidJunction(String name) {
+    public LiquidItemJunction(String name) {
         super(name);
         hasLiquids = true;
         hasItems = true;

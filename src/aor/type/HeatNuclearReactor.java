@@ -1,31 +1,26 @@
 package aor.type;
 
+import aor.aorItems;
 import aor.audio.Sfx;
-import arc.Core;
 import arc.audio.Sound;
-import arc.graphics.Color;
+import arc.func.Boolf;
 import arc.struct.EnumSet;
 import mindustry.entities.Damage;
 import mindustry.entities.Effect;
-import mindustry.graphics.Pal;
-import mindustry.ui.Bar;
+import mindustry.type.Item;
+import mindustry.type.ItemStack;
 import mindustry.world.blocks.heat.HeatBlock;
 import mindustry.world.blocks.heat.HeatProducer;
-import mindustry.world.draw.*;
-import mindustry.world.meta.BlockFlag;
-import mindustry.world.meta.Env;
+import mindustry.world.consumers.Consume;
+import mindustry.world.meta.*;
 import mindustry.content.*;
 import mindustry.gen.*;
-import mindustry.world.meta.Stat;
-import mindustry.world.meta.StatUnit;
+import static aor.aorMod.*;
 
-import static arc.Core.assets;
 import static mindustry.Vars.*;
 
 public class HeatNuclearReactor  extends HeatProducer {
 
-    public int act = 0;
-    public int actt = 0;
     public int explosionRadius;
     public int explosionDamage;
     public Effect explodeEffect;
@@ -69,10 +64,37 @@ public class HeatNuclearReactor  extends HeatProducer {
     }
     @Override
     public void setStats(){
-        stats.add(Stat.output, "\uF828 ->");
-        super.setStats();
-        stats.add(Stat.output, "\uF828 ->");
-        stats.add(Stat.output, 90, StatUnit.heatUnits );
+        this.stats.add(Stat.size, "@x@", new Object[]{this.size, this.size});
+        this.stats.add(Stat.health, (float)this.health, StatUnit.none);
+        if (this.canBeBuilt() && this.requirements.length > 0) {
+            this.stats.add(Stat.buildTime, this.buildCost / 60.0F, StatUnit.seconds);
+            this.stats.add(Stat.buildCost, StatValues.items(false, this.requirements));
+            if (this.hasLiquids) {
+                this.stats.add(Stat.liquidCapacity, this.liquidCapacity, StatUnit.liquidUnits);
+            }
+
+            if (this.hasItems && this.itemCapacity > 0) {
+                this.stats.add(Stat.itemCapacity, (float)this.itemCapacity, StatUnit.items);
+            }
+            if (this.hasItems && this.itemCapacity > 0 || this.outputItems != null) {
+                this.stats.add(Stat.productionTime, this.craftTime / 60.0F, StatUnit.seconds);
+            }
+            Consume[] var1 = this.consumers;
+            int var2 = var1.length;
+
+            for(int var3 = 0; var3 < var2; ++var3) {
+                Consume c = var1[var3];
+                c.display(this.stats);
+            }
+            if (this.outputLiquids != null) {
+                this.stats.add(Stat.output, StatValues.liquids(1.0F, this.outputLiquids));
+            }
+            this.stats.add(Stat.output, 90, StatUnit.heatUnits);
+            this.stats.add(or,"");
+            this.stats.add(input2,aorItems.nuclearFuel);
+            this.stats.add(output2, 120, StatUnit.heatUnits);
+
+        }
     }
     @Override
     public void setBars(){
@@ -82,12 +104,6 @@ public class HeatNuclearReactor  extends HeatProducer {
     public class HeatNuclearReactorBuild extends HeatProducerBuild implements HeatBlock {
         @Override
         public void updateTile() {
-            if(act == 0 && !items.empty()){
-                act = 1;
-            }
-            if(items.empty()){
-                act = 0;
-            }
             float cooler = liquids.get(Liquids.water);
             if (!items.empty() && cooler == 0) {
                 if (heat < 120f) {

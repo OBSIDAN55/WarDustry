@@ -15,9 +15,9 @@ public class aorMod extends Mod {
     }
 
     public static final Stat
-    itemsMoved1 = new Stat("itemsMoved1", StatCat.items),
-    itemsMoved2 = new Stat("itemsMoved2", StatCat.items),
-    itemsMoved3 = new Stat("itemsMoved3", StatCat.items),
+    or = new Stat("or", StatCat.crafting),
+    input2 = new Stat("input2",StatCat.crafting),
+    output2 = new Stat("output2", StatCat.crafting),
     itemsMoved4 = new Stat("itemsMoved4", StatCat.items),
     itemsMoved5 = new Stat("itemsMoved5", StatCat.items),
     itemsMoved9 = new Stat("itemsMoved9", StatCat.items),

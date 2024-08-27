@@ -273,7 +273,7 @@ public class aorUnits {
                                         mirror = false;
                                         under = true;
                                         top = true;
-                                        y = 75/4;
+                                        y = 75f/4f;
                                         moveY = -2;
                                         outline = false;
                                     }}
@@ -1247,7 +1247,7 @@ public class aorUnits {
             rotors.add(
                     new Rotor(name + "-blade") {{
                         x = 0;
-                        y =  98/4;
+                        y =  98f/4f;
                         rotorSpeed = -60f;
                         bladeCount = 5;
                         rotorTopSizeScl = 1f;

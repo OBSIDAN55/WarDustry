@@ -37,7 +37,7 @@ public class earthTechTree {
                     node(aorBlocks.oilRefinery, () -> {
                         node(aorBlocks.oxidativeReactor, () -> {
                             node(aorBlocks.lubricationPlant, () -> {
-                                node(aorBlocks.oilDistiller);
+
                             });
                         });
                         node(aorBlocks.oilPlatform);

@@ -14,8 +14,8 @@ public class LiquidItemBridge extends ItemBridge {
 
     public final int timerAccept = timers++;
 
-    public float speed = 40f;
-    public int bufferCapacity = 50;
+    public float speed;
+    public int bufferCapacity;
 
 
     public LiquidItemBridge(String name) {
@@ -34,6 +34,7 @@ public class LiquidItemBridge extends ItemBridge {
         @Override
         public void updateTransport(Building other){
             if(buffer.accepts() && items.total() > 0 && liquids.get(Liquids.oil)> 0.0001f){
+                consumeLiquid(liquids.current(), 0.3f/60f);
                 buffer.accept(items.take());
             }
             if(warmup >= 0.25f){

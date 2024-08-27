@@ -51,7 +51,7 @@ public class aorBlocks {
     public static Block
 
     //production
-    furnace, cokeBattery, blastFurnace, arcFurnace, press, moldingMachine, oilRig, oilPlatform, oilDistiller, oilRefinery, oxidativeReactor,
+    furnace, cokeBattery, blastFurnace, arcFurnace, press, moldingMachine, oilRig, oilPlatform, keroseneExtractor,gasolineExtractor,dieselExtractor, oilRefinery, oxidativeReactor,
     lubricationPlant, baseAssembler,gasCentrifuge,
     //turrets
     flamethrower, miniGun, railGun, rocketLauncher,
@@ -496,27 +496,6 @@ public class aorBlocks {
             );
 
         }};
-        oilDistiller = new GenericCrafter("oil-distiller"){{
-            localizedName = "oil-distiller UNDER REVIEW FOR REMOVAL";
-            requirements(Category.crafting, with(aorItems.gematiteItem,1));
-            size = 3;
-            rotate = true;
-            hasLiquids = true;
-            hasPower = true;
-            group = BlockGroup.liquids;
-            liquidCapacity = 40;
-            consumePower(20f);
-            consumeLiquid(mindustry.content.Liquids.oil, 10/60f);
-            outputLiquids = LiquidStack.with(aorLiquids.kerosene, 10/3/60f, aorLiquids.gasoline, 10/3/60f, aorLiquids.diesel, 10/3/60f);
-            craftTime = 30;
-            updateEffect = aorFx.smoke;
-            liquidOutputDirections = new int[]{1,2,3};
-            drawer = new DrawMulti(
-                    new DrawRegion(),
-                    new DrawLiquidOutputs(),
-                    new DrawGlowRegion()
-            );
-        }};
         lubricationPlant = new GenericCrafter("lubrication-plant"){{
             requirements(Category.crafting, with(aorItems.gematiteItem,1));
             localizedName = "lubrication-plant UNDER REVIEW FOR REMOVAL";
@@ -542,9 +521,9 @@ public class aorBlocks {
             hasPower = true;
             group = BlockGroup.liquids;
             liquidCapacity = 40;
-            consumePower(20f);
-            consumeLiquid(aorLiquids.heavyOil, 15/60f);
-            outputItem = new ItemStack(aorItems.bitumen,5);
+            consumePower(200f/60f);
+            consumeLiquid(aorLiquids.heavyOil, 3/60f);
+            outputItem = new ItemStack(aorItems.bitumen,1);
             craftTime = 250;
 
             updateEffect = aorFx.smoke;
@@ -553,6 +532,36 @@ public class aorBlocks {
                     new DrawLiquidTile(aorLiquids.heavyOil),
                     new DrawDefault()
             );
+        }};
+        keroseneExtractor = new HeatCrafter("kerosene-extractor"){{
+            requirements(Category.crafting, with(aorItems.ironIngot, 50, aorItems.ironPlate,30, aorItems.copperPlate, 60, aorItems.leadPlate, 40, aorItems.aluminiumPlate,80));
+            size = 2;
+            hasLiquids = true;
+            consumeLiquid(Liquids.oil, 5/60f);
+            heatRequirement = 15;
+            maxEfficiency = 1.5f;
+            craftTime = 90f;
+            outputLiquid = new LiquidStack(aorLiquids.kerosene, 4f/60f);
+        }};
+        gasolineExtractor = new HeatCrafter("gasoline-extractor"){{
+            requirements(Category.crafting, with(aorItems.ironIngot, 50, aorItems.ironPlate,30, aorItems.copperPlate, 60, aorItems.leadPlate, 40, aorItems.aluminiumPlate,80));
+            size = 3;
+            hasLiquids = true;
+            consumeLiquid(aorLiquids.tightOil, 10/60f);
+            heatRequirement = 20;
+            maxEfficiency = 1.5f;
+            craftTime = 120f;
+            outputLiquid = new LiquidStack(aorLiquids.kerosene, 9f/60f);
+        }};
+        dieselExtractor = new HeatCrafter("diesel-extractor"){{
+            requirements(Category.crafting, with(aorItems.ironIngot, 50, aorItems.ironPlate,30, aorItems.copperPlate, 60, aorItems.leadPlate, 40, aorItems.aluminiumPlate,80));
+            size = 3;
+            hasLiquids = true;
+            consumeLiquid(aorLiquids.tightOil, 15/60f);
+            heatRequirement = 20;
+            maxEfficiency = 2f;
+            craftTime = 150f;
+            outputLiquid = new LiquidStack(aorLiquids.diesel, 10f/60f);
         }};
         cokeBattery = new GenericCrafter("coke-battery"){{
             requirements(Category.crafting, with(aorItems.bitumen,50, aorItems.leadIngot, 70, aorItems.titaniumIngot, 60, aorItems.titaniumPlate, 30, aorItems.ironRod, 40));
@@ -593,7 +602,7 @@ public class aorBlocks {
         //distribution
         oilConveyor = new LiquidStackConveyor("oil-conveyor"){{
             requirements(Category.distribution, with(aorItems.ironPlate, 2));
-            speed = 1;
+            speed = 25f/60f/10f;
             itemCapacity = 10;
             liquidCapacity = 20;
             consumeLiquid(mindustry.content.Liquids.oil, 0.2f/60f);
@@ -602,8 +611,9 @@ public class aorBlocks {
             requirements(Category.distribution, with(aorItems.ironPlate, 20));
             health = 130;
             liquidCapacity = 20;
+            itemCapacity = 1;
             consumeLiquid(mindustry.content.Liquids.oil, 0.6f/60f);
-            speed = 7f;
+            speed = 2.4f;
             underBullets = true;
             solid = false;
         }};
@@ -616,7 +626,7 @@ public class aorBlocks {
         }};
         oilItemBridge = new LiquidItemBridge("oil-bridge"){{
             requirements(Category.distribution, with(Items.lead, 6, Items.copper, 6));
-            speed = 74f;
+            speed = 0.1f;
             bufferCapacity = 14;
             fadeIn = moveArrows = false;
             arrowSpacing = 6f;
@@ -629,7 +639,7 @@ public class aorBlocks {
         }};
         gasolineConveyor = new LiquidStackConveyor("gasoline-conveyor"){{
             requirements(Category.distribution, with(aorItems.ironPlate, 2, aorItems.steelPlate, 2 ));
-            speed = 0.2f;
+            speed = 0.05f;
             itemCapacity = 20;
             liquidCapacity = 20;
             consumeLiquid(aorLiquids.gasoline, 0.5f/60f);
@@ -638,8 +648,9 @@ public class aorBlocks {
             requirements(Category.distribution, with(aorItems.ironPlate, 20, aorItems.steelPlate, 20));
             health = 130;
             liquidCapacity = 20;
+            itemCapacity = 1;
             consumeLiquid(aorLiquids.gasoline, 1.5f/60f);
-            speed = 5f;
+            speed = 1f;
             underBullets = true;
             solid = false;
         }};
@@ -1032,7 +1043,8 @@ public class aorBlocks {
              generateEffect = aorFx.steam;
          }};
         //turrets
-        //todo balance turrets
+        //todo turrets
+        // balance turrets
         flamethrower = new LiquidTurret("flamethrower"){{
             requirements(Category.turret, with(aorItems.gematiteItem,1));
                 ammo(

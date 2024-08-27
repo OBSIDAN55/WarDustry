@@ -2,7 +2,6 @@ package aor;
 
 import aor.audio.Sfx;
 import aor.content.*;
-import mindustry.Vars;
 import mindustry.content.Blocks;
 import mindustry.mod.Mod;
 
@@ -17,14 +16,7 @@ public class aorMod extends Mod {
     public static final Stat
     or = new Stat("or", StatCat.crafting),
     input2 = new Stat("input2",StatCat.crafting),
-    output2 = new Stat("output2", StatCat.crafting),
-    itemsMoved4 = new Stat("itemsMoved4", StatCat.items),
-    itemsMoved5 = new Stat("itemsMoved5", StatCat.items),
-    itemsMoved9 = new Stat("itemsMoved9", StatCat.items),
-    itemsMoved6 = new Stat("itemsMoved6", StatCat.items),
-    itemsMoved7 = new Stat("itemsMoved7", StatCat.items),
-    itemsMoved8 = new Stat("itemsMoved8", StatCat.items),
-    itemsMoved10= new Stat("itemsMoved10", StatCat.items);
+    output2 = new Stat("output2", StatCat.crafting);
     @Override
     public void loadContent(){
         Sfx.load();

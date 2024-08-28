@@ -28,10 +28,12 @@ import mindustry.world.blocks.distribution.StackRouter;
 import mindustry.world.blocks.environment.Floor;
 import mindustry.world.blocks.environment.OreBlock;
 import mindustry.world.blocks.heat.HeatConductor;
+import mindustry.world.blocks.heat.HeatProducer;
 import mindustry.world.blocks.liquid.ArmoredConduit;
 import mindustry.world.blocks.liquid.LiquidBridge;
 import mindustry.world.blocks.liquid.LiquidRouter;
 import mindustry.world.blocks.power.Battery;
+import mindustry.world.blocks.power.HeaterGenerator;
 import mindustry.world.blocks.power.PowerNode;
 import mindustry.world.blocks.power.SolarGenerator;
 import mindustry.world.blocks.production.*;
@@ -51,8 +53,9 @@ public class aorBlocks {
     public static Block
 
     //production
-    furnace, cokeBattery, blastFurnace, arcFurnace, press, moldingMachine, oilRig, oilPlatform, keroseneExtractor,gasolineExtractor,dieselExtractor, oilRefinery, oxidativeReactor,
-    lubricationPlant, baseAssembler,gasCentrifuge,
+    furnace, electricFurnace, cokeBattery, blastFurnace, arcFurnace, press, moldingMachine, oilRig, oilPlatform,
+    keroseneExtractor,gasolineExtractor,dieselExtractor, oilRefinery, oxidativeReactor,
+    lubricationPlant, baseAssembler,gasCentrifuge, electricHeater,
     //turrets
     flamethrower, miniGun, railGun, rocketLauncher,
     //power
@@ -199,7 +202,7 @@ public class aorBlocks {
                         }};
                         output = new IOEntry() {{
                             items = ItemStack.with(
-                                    aorItems.ironPlate, 3
+                                    aorItems.ironPlate, 2
                             );
                         }};
                         craftTime = 150f;
@@ -212,7 +215,7 @@ public class aorBlocks {
                         }};
                         output = new IOEntry() {{
                             items = ItemStack.with(
-                                    aorItems.copperPlate, 3
+                                    aorItems.copperPlate, 2
                             );
                         }};
                         craftTime = 150f;
@@ -225,7 +228,7 @@ public class aorBlocks {
                         }};
                         output = new IOEntry() {{
                             items = ItemStack.with(
-                                    aorItems.leadPlate, 3
+                                    aorItems.leadPlate, 2
                             );
                         }};
                         craftTime = 150f;
@@ -238,7 +241,7 @@ public class aorBlocks {
                         }};
                         output = new IOEntry() {{
                             items = ItemStack.with(
-                                    aorItems.aluminiumPlate, 3
+                                    aorItems.aluminiumPlate, 2
                             );
                         }};
                         craftTime = 150f;
@@ -251,7 +254,7 @@ public class aorBlocks {
                         }};
                         output = new IOEntry() {{
                             items = ItemStack.with(
-                                    aorItems.zincPlate, 3
+                                    aorItems.zincPlate, 2
                             );
                         }};
                         craftTime = 150f;
@@ -267,7 +270,7 @@ public class aorBlocks {
                                     aorItems.titaniumPlate, 2
                             );
                         }};
-                        craftTime = 150f;
+                        craftTime = 250f;
                     }},
 
                     new Recipe(){{
@@ -281,7 +284,7 @@ public class aorBlocks {
                                     aorItems.steelPlate, 2
                             );
                         }};
-                        craftTime = 150f;
+                        craftTime = 300f;
                     }}
             );
             craftEffect = Fx.pulverizeMedium;
@@ -358,6 +361,114 @@ public class aorBlocks {
                     }}
             );
             craftEffect = Fx.pulverizeMedium;
+        }};
+        electricFurnace = new MultiCrafter("electric-furnace"){{
+            requirements(Category.crafting, with(aorItems.gematiteItem, 10, aorItems.leadItem, 5));
+            itemCapacity = 100;
+            size = 3;
+            resolvedRecipes = Seq.with(
+                    new Recipe() {{
+                        input = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.gematiteItem, 1
+                            );
+                            power = 140f/60f;
+                        }};
+                        output = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.ironIngot, 1
+                            );
+                        }};
+                        craftTime = 50f;
+                    }},
+                    new Recipe() {{
+                        input = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.malachiteItem, 1
+                            );
+                            power = 140f/60f;
+                        }};
+                        output = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.copperIngot, 1
+                            );
+                        }};
+                        craftTime = 50f;
+                    }},
+                    new Recipe() {{
+                        input = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.leadItem, 1
+                            );
+                            power = 140f/60f;
+                        }};
+                        output = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.leadIngot, 1
+                            );
+                        }};
+                        craftTime = 50f;
+                    }},
+                    new Recipe() {{
+                        input = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.aluminiumItem, 1
+                            );
+                            power = 140f/60f;
+                        }};
+                        output = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.aluminiumIngot, 1
+                            );
+                        }};
+                        craftTime = 50f;
+                    }},
+                    new Recipe() {{
+                        input = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.sphaleriteItem, 1
+                            );
+                            power = 200f/60f;
+                        }};
+                        output = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.zincIngot, 1
+                            );
+                        }};
+                        craftTime = 60f;
+                    }},
+                    new Recipe() {{
+                        input = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.titaniumItem, 1
+                            );
+                            power = 240f/60f;
+                        }};
+                        output = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.titaniumIngot, 1
+                            );
+                        }};
+                        craftTime = 75f;
+                    }},
+
+
+                    new Recipe() {{
+                        input = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.wolframiteItem, 1
+                            );
+                            power = 350f/60f;
+                        }};
+                        output = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.wolframiteIngot, 1
+                            );
+                        }};
+                        craftTime = 87.5f;
+                    }}
+            );
+            updateEffect = aorFx.smoke;
         }};
         baseAssembler = new MultiCrafter("base-assembler"){{
             requirements(Category.crafting, with(aorItems.ironIngot, 130, aorItems.ironPlate, 70, aorItems.copperIngot, 150, aorItems.copperPlate, 70,
@@ -496,6 +607,32 @@ public class aorBlocks {
             );
 
         }};
+        electricHeater = new HeatProducer("electric-heater"){{
+            requirements(Category.crafting, with(Items.tungsten, 30, Items.oxide, 30));
+            drawer = new DrawMulti(new DrawDefault(), new DrawHeatOutput());
+            rotateDraw = false;
+            size = 2;
+            heatOutput = 5f;
+            regionRotated1 = 1;
+            ambientSound = Sounds.hum;
+            itemCapacity = 0;
+            consumePower(100f / 60f);
+        }};
+        keroseneExtractor = new HeatCrafter("kerosene-extractor"){{
+            requirements(Category.crafting, with(aorItems.ironIngot, 50, aorItems.ironPlate,30, aorItems.copperPlate, 60, aorItems.leadPlate, 40, aorItems.aluminiumPlate,80));
+            size = 2;
+            hasLiquids = true;
+            consumeLiquid(Liquids.oil, 5/60f);
+            consumePower(1);
+            heatRequirement = 15;
+            maxEfficiency = 1.33f;
+            craftTime = 90f;
+            outputLiquid = new LiquidStack(aorLiquids.kerosene, 4f/60f);
+            drawer = new DrawMulti(
+                    new DrawDefault(),
+                    new DrawHeatInput()
+            );
+        }};
         lubricationPlant = new GenericCrafter("lubrication-plant"){{
             requirements(Category.crafting, with(aorItems.gematiteItem,1));
             localizedName = "lubrication-plant UNDER REVIEW FOR REMOVAL";
@@ -533,35 +670,36 @@ public class aorBlocks {
                     new DrawDefault()
             );
         }};
-        keroseneExtractor = new HeatCrafter("kerosene-extractor"){{
-            requirements(Category.crafting, with(aorItems.ironIngot, 50, aorItems.ironPlate,30, aorItems.copperPlate, 60, aorItems.leadPlate, 40, aorItems.aluminiumPlate,80));
-            size = 2;
-            hasLiquids = true;
-            consumeLiquid(Liquids.oil, 5/60f);
-            heatRequirement = 15;
-            maxEfficiency = 1.5f;
-            craftTime = 90f;
-            outputLiquid = new LiquidStack(aorLiquids.kerosene, 4f/60f);
-        }};
+
         gasolineExtractor = new HeatCrafter("gasoline-extractor"){{
             requirements(Category.crafting, with(aorItems.ironIngot, 50, aorItems.ironPlate,30, aorItems.copperPlate, 60, aorItems.leadPlate, 40, aorItems.aluminiumPlate,80));
             size = 3;
             hasLiquids = true;
             consumeLiquid(aorLiquids.tightOil, 10/60f);
+            consumePower(130/60f);
             heatRequirement = 20;
             maxEfficiency = 1.5f;
             craftTime = 120f;
             outputLiquid = new LiquidStack(aorLiquids.kerosene, 9f/60f);
+            drawer = new DrawMulti(
+                    new DrawDefault(),
+                    new DrawHeatInput()
+            );
         }};
         dieselExtractor = new HeatCrafter("diesel-extractor"){{
             requirements(Category.crafting, with(aorItems.ironIngot, 50, aorItems.ironPlate,30, aorItems.copperPlate, 60, aorItems.leadPlate, 40, aorItems.aluminiumPlate,80));
             size = 3;
             hasLiquids = true;
             consumeLiquid(aorLiquids.tightOil, 15/60f);
+            consumePower(160/60f);
             heatRequirement = 20;
             maxEfficiency = 2f;
             craftTime = 150f;
             outputLiquid = new LiquidStack(aorLiquids.diesel, 10f/60f);
+            drawer = new DrawMulti(
+                    new DrawDefault(),
+                    new DrawHeatInput()
+            );
         }};
         cokeBattery = new GenericCrafter("coke-battery"){{
             requirements(Category.crafting, with(aorItems.bitumen,50, aorItems.leadIngot, 70, aorItems.titaniumIngot, 60, aorItems.titaniumPlate, 30, aorItems.ironRod, 40));

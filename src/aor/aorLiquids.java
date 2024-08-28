@@ -5,8 +5,15 @@ import mindustry.type.Liquid;
 
 public class aorLiquids {
     public static Liquid
-    heavyOil, tightOil,lubricant, pressure, kerosene,gasoline,diesel, steam;
+    heavyOil, tightOil,lubricant, kerosene, gasoline, diesel, steam;
     public static void load(){
+        steam = new Liquid("steam", Color.white){{
+            heatCapacity = 0.4f;
+            viscosity = 0.6f;
+            explosiveness = 1.2f;
+            flammability = 1f;
+            gas = true;
+        }};
         heavyOil = new Liquid("heavyoil", Color.valueOf("4D220E")){{
             heatCapacity = 0.4f;
             viscosity = 0.6f;
@@ -25,13 +32,6 @@ public class aorLiquids {
             explosiveness = 1.2f;
             flammability = 1f;
         }};
-        pressure = new Liquid("pressure", Color.white){{
-            heatCapacity = 0.4f;
-            viscosity = 0.6f;
-            explosiveness = 1.2f;
-            flammability = 1f;
-            gas = true;
-        }};
         kerosene = new Liquid("kerosene", Color.valueOf("E1E9F0cc")){{
             heatCapacity = 0.4f;
             viscosity = 0.6f;
@@ -49,13 +49,6 @@ public class aorLiquids {
             viscosity = 0.6f;
             explosiveness = 1.2f;
             flammability = 1f;
-        }};
-        steam = new Liquid("steam", Color.white){{
-            heatCapacity = 0.4f;
-            viscosity = 0.6f;
-            explosiveness = 1.2f;
-            flammability = 1f;
-            gas = true;
         }};
     }
 }

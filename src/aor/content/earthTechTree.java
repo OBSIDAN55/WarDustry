@@ -129,7 +129,6 @@ public class earthTechTree {
                     });
                 });
                 nodeProduce(aorLiquids.steam,()->{
-                    nodeProduce(aorLiquids.pressure,()->{});
                     nodeProduce(Liquids.oil,()->{
                         nodeProduce(aorLiquids.heavyOil,()->{
                             nodeProduce(aorItems.bitumen, () -> {});

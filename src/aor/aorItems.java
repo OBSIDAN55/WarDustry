@@ -18,7 +18,7 @@ public class aorItems {
     //rods
     ironRod,copperWire,steelRod,carbonElectrode,wolframiteRod,
     //other
-    uranium235, uranium238,nuclearFuel,electricMotor;
+    uranium235, uranium238,nuclearFuel,electricMotor, stoneBlock, glass;
     public static void load(){
         //colors
         String gemcol = "831E1E";
@@ -32,14 +32,33 @@ public class aorItems {
         String zincol = "403825";
         String titcol = "282D3E";
         String wolcol = "48372F";
-        //plates
-        aluminiumPlate = new Item("aluminium-plate", Color.valueOf(alucol)){{
+        String rockcol = "957A75";
+        String glacol = "B6D6F3";
+        rock = new Item("rock", Color.valueOf(rockcol)){{
+            cost = 1.3f;
+            explosiveness = 0f;
+            hardness = 2;
+            radioactivity = 0f;
+        }};
+        stoneBlock = new Item("stone-block", Color.valueOf(rockcol)){{
+            cost = 1.3f;
+            explosiveness = 0f;
+            hardness = 1;
+            radioactivity = 0f;
+        }};
+        glass = new Item("glass", Color.valueOf(glacol)){{
+            cost = 1.3f;
+            explosiveness = 0f;
+            hardness = 1;
+            radioactivity = 0f;
+        }};
+        gematiteItem = new Item("gematite-item", Color.valueOf(gemcol)){{
             cost = 1f;
             explosiveness = 0f;
             hardness = 1;
             radioactivity = 0f;
         }};
-        copperPlate = new Item("copper-plate", Color.valueOf(copcol)){{
+        ironIngot = new Item("iron-ingot", Color.valueOf(ironcol)){{
             cost = 1f;
             explosiveness = 0f;
             hardness = 1;
@@ -51,38 +70,7 @@ public class aorItems {
             hardness = 1;
             radioactivity = 0f;
         }};
-        leadPlate = new Item("lead-plate", Color.valueOf(leadcol)){{
-            cost = 1f;
-            explosiveness = 0f;
-            hardness = 1;
-            radioactivity = 0f;
-        }};
-        steelPlate = new Item("steel-plate", Color.valueOf(stecol)){{
-            cost = 3f;
-            explosiveness = 0f;
-            hardness = 3;
-            radioactivity = 0f;
-        }};
-        titaniumPlate = new Item("titanium-plate", Color.valueOf(titcol)){{
-            cost = 3f;
-            explosiveness = 0f;
-            hardness = 3;
-            radioactivity = 0f;
-        }};
-        zincPlate = new Item("zinc-plate", Color.valueOf(zincol)){{
-            cost = 2f;
-            explosiveness = 0f;
-            hardness = 2;
-            radioactivity = 0f;
-        }};
-        //items
-        rock = new Item("rock"){{
-            cost = 1f;
-            explosiveness = 0f;
-            hardness = 1;
-            radioactivity = 0f;
-        }};
-        aluminiumItem = new Item("aluminium-item", Color.valueOf(alucol)){{
+        ironRod = new Item("iron-rod", Color.valueOf(ironcol)){{
             cost = 1f;
             explosiveness = 0f;
             hardness = 1;
@@ -94,7 +82,19 @@ public class aorItems {
             hardness = 1;
             radioactivity = 0f;
         }};
-        gematiteItem = new Item("gematite-item", Color.valueOf(gemcol)){{
+        copperIngot = new Item("copper-ingot", Color.valueOf(copcol)){{
+            cost = 1f;
+            explosiveness = 0f;
+            hardness = 1;
+            radioactivity = 0f;
+        }};
+        copperPlate = new Item("copper-plate", Color.valueOf(copcol)){{
+            cost = 1f;
+            explosiveness = 0f;
+            hardness = 1;
+            radioactivity = 0f;
+        }};
+        copperWire = new Item("copper-wire", Color.valueOf(copcol)){{
             cost = 1f;
             explosiveness = 0f;
             hardness = 1;
@@ -106,16 +106,34 @@ public class aorItems {
             hardness = 1;
             radioactivity = 0f;
         }};
-        steelItem = new Item("steel", Color.valueOf(stecol)){{
-            cost = 3f;
+        leadIngot = new Item("lead-ingot", Color.valueOf(leadcol)){{
+            cost = 1f;
             explosiveness = 0f;
-            hardness = 3;
+            hardness = 1;
             radioactivity = 0f;
         }};
-        titaniumItem = new Item("titanium-item", Color.valueOf(titcol)){{
-            cost = 3f;
+        leadPlate = new Item("lead-plate", Color.valueOf(leadcol)){{
+            cost = 1f;
             explosiveness = 0f;
-            hardness = 3;
+            hardness = 1;
+            radioactivity = 0f;
+        }};
+        aluminiumItem = new Item("aluminium-item", Color.valueOf(alucol)){{
+            cost = 1f;
+            explosiveness = 0f;
+            hardness = 1;
+            radioactivity = 0f;
+        }};
+        aluminiumIngot = new Item("aluminium-ingot", Color.valueOf(alucol)){{
+            cost = 1f;
+            explosiveness = 0f;
+            hardness = 1;
+            radioactivity = 0f;
+        }};
+        aluminiumPlate = new Item("aluminium-plate", Color.valueOf(alucol)){{
+            cost = 1f;
+            explosiveness = 0f;
+            hardness = 1;
             radioactivity = 0f;
         }};
         sphaleriteItem = new Item("sphalerite-item", Color.valueOf(zincol)){{
@@ -124,7 +142,67 @@ public class aorItems {
             hardness = 2;
             radioactivity = 0f;
         }};
+        zincIngot = new Item("zinc-ingot", Color.valueOf(zincol)){{
+            cost = 2f;
+            explosiveness = 0f;
+            hardness = 2;
+            radioactivity = 0f;
+        }};
+        zincPlate = new Item("zinc-plate", Color.valueOf(zincol)){{
+            cost = 2f;
+            explosiveness = 0f;
+            hardness = 2;
+            radioactivity = 0f;
+        }};
+        titaniumItem = new Item("titanium-item", Color.valueOf(titcol)){{
+            cost = 3f;
+            explosiveness = 0f;
+            hardness = 3;
+            radioactivity = 0f;
+        }};
+        titaniumIngot = new Item("titanium-ingot", Color.valueOf(titcol)){{
+            cost = 3f;
+            explosiveness = 0f;
+            hardness = 3;
+            radioactivity = 0f;
+        }};
+        titaniumPlate = new Item("titanium-plate", Color.valueOf(titcol)){{
+            cost = 3f;
+            explosiveness = 0f;
+            hardness = 3;
+            radioactivity = 0f;
+        }};
+        steelItem = new Item("steel", Color.valueOf(stecol)){{
+            cost = 3f;
+            explosiveness = 0f;
+            hardness = 3;
+            radioactivity = 0f;
+        }};
+        steelPlate = new Item("steel-plate", Color.valueOf(stecol)){{
+            cost = 3f;
+            explosiveness = 0f;
+            hardness = 3;
+            radioactivity = 0f;
+        }};
+        steelRod = new Item("steel-rod", Color.valueOf(stecol)){{
+            cost = 3f;
+            explosiveness = 0f;
+            hardness = 3;
+            radioactivity = 0f;
+        }};
         wolframiteItem = new Item("wolframite-item", Color.valueOf(wolcol)){{
+            cost = 4f;
+            explosiveness = 0f;
+            hardness = 4;
+            radioactivity = 0f;
+        }};
+        wolframiteIngot = new Item("wolframite-ingot", Color.valueOf(wolcol)){{
+            cost = 4f;
+            explosiveness = 0f;
+            hardness = 4;
+            radioactivity = 0f;
+        }};
+        wolframiteRod = new Item("wolframite-rod", Color.valueOf(wolcol)){{
             cost = 4f;
             explosiveness = 0f;
             hardness = 4;
@@ -137,6 +215,12 @@ public class aorItems {
             radioactivity = 0f;
             flammability = 1.4f;
         }};
+        carbonElectrode = new Item("carbon-electrode", Color.valueOf(bitcol)){{
+            cost = 2f;
+            explosiveness = 0f;
+            hardness = 2;
+            radioactivity = 0f;
+        }};
         bitumen = new Item("bitumen", Color.valueOf(bitcol)){{
             cost = 2f;
             explosiveness = 0f;
@@ -144,88 +228,12 @@ public class aorItems {
             radioactivity = 0f;
             flammability = 0.8f;
         }};
-        //ingots
-        aluminiumIngot = new Item("aluminium-ingot", Color.valueOf(alucol)){{
-            cost = 1f;
-            explosiveness = 0f;
-            hardness = 1;
-            radioactivity = 0f;
-        }};
-        copperIngot = new Item("copper-ingot", Color.valueOf(copcol)){{
-            cost = 1f;
-            explosiveness = 0f;
-            hardness = 1;
-            radioactivity = 0f;
-        }};
-        ironIngot = new Item("iron-ingot", Color.valueOf(ironcol)){{
-            cost = 1f;
-            explosiveness = 0f;
-            hardness = 1;
-            radioactivity = 0f;
-        }};
-        leadIngot = new Item("lead-ingot", Color.valueOf(leadcol)){{
-            cost = 1f;
-            explosiveness = 0f;
-            hardness = 1;
-            radioactivity = 0f;
-        }};
-        titaniumIngot = new Item("titanium-ingot", Color.valueOf(titcol)){{
-            cost = 3f;
-            explosiveness = 0f;
-            hardness = 3;
-            radioactivity = 0f;
-        }};
-        zincIngot = new Item("zinc-ingot", Color.valueOf(zincol)){{
-            cost = 2f;
-            explosiveness = 0f;
-            hardness = 2;
-            radioactivity = 0f;
-        }};
-        wolframiteIngot = new Item("wolframite-ingot", Color.valueOf(wolcol)){{
-            cost = 4f;
-            explosiveness = 0f;
-            hardness = 4;
-            radioactivity = 0f;
-        }};
-        //rods
-        carbonElectrode = new Item("carbon-electrode", Color.valueOf(bitcol)){{
-            cost = 2f;
-            explosiveness = 0f;
-            hardness = 2;
-            radioactivity = 0f;
-        }};
-        copperWire = new Item("copper-wire", Color.valueOf(copcol)){{
-            cost = 1f;
-            explosiveness = 0f;
-            hardness = 1;
-            radioactivity = 0f;
-        }};
-        ironRod = new Item("iron-rod", Color.valueOf(ironcol)){{
-            cost = 1f;
-            explosiveness = 0f;
-            hardness = 1;
-            radioactivity = 0f;
-        }};
-        steelRod = new Item("steel-rod", Color.valueOf(stecol)){{
-            cost = 3f;
-            explosiveness = 0f;
-            hardness = 3;
-            radioactivity = 0f;
-        }};
-        wolframiteRod = new Item("wolframite-rod", Color.valueOf(wolcol)){{
-            cost = 4f;
-            explosiveness = 0f;
-            hardness = 4;
-            radioactivity = 0f;
-        }};
         electricMotor = new Item("electric-motor"){{
             cost = 4f;
             explosiveness = 0f;
             hardness = 2;
             radioactivity = 0f;
-            //hui
         }};
-        //other
         uranium = new Item("uranium"){{
             cost = 5f;
             explosiveness = 0.2f;

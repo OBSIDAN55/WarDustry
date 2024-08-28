@@ -55,7 +55,7 @@ public class aorBlocks {
     //production
     furnace, electricFurnace, cokeBattery, blastFurnace, arcFurnace, press, moldingMachine, oilRig, oilPlatform,
     keroseneExtractor,gasolineExtractor,dieselExtractor, oilRefinery, oxidativeReactor,
-    lubricationPlant, baseAssembler,gasCentrifuge, electricHeater,
+    lubricationPlant, baseAssembler,gasCentrifuge, electricHeater, macerator,
     //turrets
     flamethrower, miniGun, railGun, rocketLauncher,
     //power
@@ -188,6 +188,24 @@ public class aorBlocks {
                     }}
             );
             updateEffect = aorFx.smoke;
+        }};
+        macerator = new GenericCrafter("macerator"){{
+            requirements(Category.crafting, with(Items.copper, 30, Items.lead, 25));
+            size = 2;
+            outputItem = new ItemStack(Items.sand, 1);
+            craftEffect = Fx.pulverize;
+            craftTime = 40f;
+            updateEffect = Fx.pulverizeSmall;
+            hasItems = hasPower = true;
+            drawer = new DrawMulti(new DrawDefault(), new DrawRegion("-rotator"){{
+                spinSprite = true;
+                rotateSpeed = 2f;
+            }});
+            ambientSound = Sounds.grinding;
+            ambientSoundVolume = 0.025f;
+
+            consumeItem(aorItems.rock, 1);
+            consumePower(0.50f);
         }};
         press = new MultiCrafter("press"){{
             requirements(Category.crafting, with(aorItems.ironIngot, 15, aorItems.leadIngot,10));
@@ -561,7 +579,7 @@ public class aorBlocks {
             outputLiquid = new LiquidStack(mindustry.content.Liquids.oil, 15/60f);
             drawer = new DrawMulti(
                     new DrawRegion("-bottom"),
-                    new DrawLiquidTile(aorLiquids.pressure),
+                    new DrawLiquidTile(aorLiquids.steam),
                     new DrawPistons(){{
                         sinMag = 2f;
                         sinScl = 5f;
@@ -591,7 +609,7 @@ public class aorBlocks {
             displayEfficiency = true;
             drawer = new DrawMulti(
                     new DrawRegion("-bottom"),
-                    new DrawLiquidTile(aorLiquids.pressure),
+                    new DrawLiquidTile(aorLiquids.steam),
                     new DrawPistons(){{
                         sinMag = 2;
                         sinScl = 5;
@@ -765,10 +783,13 @@ public class aorBlocks {
         oilItemBridge = new LiquidItemBridge("oil-bridge"){{
             requirements(Category.distribution, with(Items.lead, 6, Items.copper, 6));
             speed = 0.1f;
-            bufferCapacity = 14;
             fadeIn = moveArrows = false;
             arrowSpacing = 6f;
             range = 4;
+            arrowPeriod = 0.9f;
+            arrowTimeScl = 2.75f;
+            bufferCapacity = 20;
+            itemCapacity = 20;
             hasPower = false;
         }};
         oilUnloader = new DirectionalUnloader("unloader"){{

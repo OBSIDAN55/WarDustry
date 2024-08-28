@@ -5,8 +5,10 @@ import arc.util.io.Reads;
 import mindustry.content.Liquids;
 import mindustry.gen.Building;
 import mindustry.type.Item;
+import mindustry.type.Liquid;
 import mindustry.world.ItemBuffer;
 import mindustry.world.blocks.distribution.ItemBridge;
+import mindustry.world.consumers.Consume;
 import mindustry.world.meta.BlockGroup;
 import mindustry.world.meta.Env;
 
@@ -34,8 +36,8 @@ public class LiquidItemBridge extends ItemBridge {
         @Override
         public void updateTransport(Building other){
             if(buffer.accepts() && items.total() > 0 && liquids.get(Liquids.oil)> 0.0001f){
-                consumeLiquid(liquids.current(), 0.3f/60f);
                 buffer.accept(items.take());
+                liquids.remove(Liquids.oil,0.09f);
             }
             if(warmup >= 0.25f){
                 moved |= moveLiquid(other, liquids.current()) > 0.05f;

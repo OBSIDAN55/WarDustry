@@ -33,7 +33,6 @@ import mindustry.world.blocks.liquid.ArmoredConduit;
 import mindustry.world.blocks.liquid.LiquidBridge;
 import mindustry.world.blocks.liquid.LiquidRouter;
 import mindustry.world.blocks.power.Battery;
-import mindustry.world.blocks.power.HeaterGenerator;
 import mindustry.world.blocks.power.PowerNode;
 import mindustry.world.blocks.power.SolarGenerator;
 import mindustry.world.blocks.production.*;
@@ -82,7 +81,7 @@ public class aorBlocks {
 
     public static void load(){
         furnace = new MultiCrafter("furnace"){{
-            requirements(Category.crafting, with(aorItems.gematiteItem, 10, aorItems.leadItem, 5));
+            requirements(Category.crafting, with(aorItems.rock, 15));
             itemCapacity = 100;
             size = 3;
             resolvedRecipes = Seq.with(
@@ -212,6 +211,19 @@ public class aorBlocks {
             itemCapacity = 100;
             size = 3;
             resolvedRecipes = Seq.with(
+                    new Recipe() {{
+                        input = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.rock, 1
+                            );
+                        }};
+                        output = new IOEntry() {{
+                            items = ItemStack.with(
+                                    aorItems.stoneBlock, 1
+                            );
+                        }};
+                        craftTime = 150f;
+                    }},
                     new Recipe() {{
                         input = new IOEntry() {{
                             items = ItemStack.with(
@@ -381,7 +393,7 @@ public class aorBlocks {
             craftEffect = Fx.pulverizeMedium;
         }};
         electricFurnace = new MultiCrafter("electric-furnace"){{
-            requirements(Category.crafting, with(aorItems.gematiteItem, 10, aorItems.leadItem, 5));
+            requirements(Category.crafting, with(aorItems.stoneBlock, 25, aorItems.copperWire, 10));
             itemCapacity = 100;
             size = 3;
             resolvedRecipes = Seq.with(
